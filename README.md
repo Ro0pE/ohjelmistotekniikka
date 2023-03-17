@@ -1,7 +1,9 @@
-# Ohjelmistotuotanto-kurssi
+# Ohjelmistotekniikka
 
-**Harjoitustyö**
+## Tehtävät
 
-[GitLog](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+### Viikko 1
 
-[Komentorivi](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+[GitLog.txt](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+
+[Komentorivi.txt](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
