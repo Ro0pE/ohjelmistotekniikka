@@ -1,3 +1,3 @@
 # Ohjelmistotuotanto-kurssi
 
-** Harjoitustyö **
+**Harjoitustyö**
