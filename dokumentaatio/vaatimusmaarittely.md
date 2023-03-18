@@ -3,7 +3,7 @@
 ## Sovelluksen tarkoitus
 
 Pelin idea on pelata Black Jack - korttipeliä tietokonetta vastaan ja kerätä mahdollisimman suuri potti rahaa.
-Black Jack - pelissä tarkoitus on saada voittaa jakaja ( eli tietokone )
+Black Jack - pelissä tarkoitus on voittaa jakaja ( eli tietokone )
 Pelissä on tiettyjä sääntöjä:
  - Jakajan korteista vain toinen on aluksi esillä. Esimerkiksi jos jakajalla on ruutu 9 ja risti 8, pelaaja näkee vain, että jakalla on risti 8
  - Ensin tarkistetaan Black Jack, eli onko jommalla kummalla toinen korteista arvoltaan 10 (10,J,Q,K) ja toinen 11 (A, eli ässä)
