@@ -11,3 +11,7 @@
 ### Viikko 2:
 
 [Vaatimusmäärittely](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+## Harjoitustyö:
+
+[Tuntikirjanpito] (https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/tyoaikakirjanpito/tuntikirjanpito.md)
