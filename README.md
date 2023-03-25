@@ -10,7 +10,7 @@
 
 ### Viikko 2:
 
-[Vaatimusmäärittely](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 
 ## Harjoitustyö:
 
