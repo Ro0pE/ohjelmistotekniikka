@@ -7,3 +7,7 @@
 [GitLog.txt](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
 [Komentorivi.txt](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+
+### Viikko 2:
+
+[Vaatimusmäärittely](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
