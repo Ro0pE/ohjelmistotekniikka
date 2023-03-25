@@ -15,7 +15,6 @@ Pelissä on tiettyjä sääntöjä:
  - Jos jakajan korttien summa on <= 17, jakaja ei ota lisää kortteja
  - Mikäli päädytään tasatulokseen, jakaja voittaa
 
- - 
 ## Käyttäjät
 
 Pelillä on vain yksi käyttäjä, pelaaja itse.
@@ -40,6 +39,6 @@ Pelillä on vain yksi käyttäjä, pelaaja itse.
 - Double-toiminnon lisäys
 - Split-toiminnon lisäys
 - Statsien tallennus tiedostoon / lukeminen tiedostosta
-- 
+
 
 
