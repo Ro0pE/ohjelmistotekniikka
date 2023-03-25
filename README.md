@@ -14,4 +14,4 @@
 
 ## Harjoitustyö:
 
-[Tuntikirjanpito] (https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/tyoaikakirjanpito/tuntikirjanpito.md)
+[Tuntikirjanpito](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/tyoaikakirjanpito/tuntikirjanpito.md)
