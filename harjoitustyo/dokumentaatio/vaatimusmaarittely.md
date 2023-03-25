@@ -37,5 +37,9 @@ Pelillä on vain yksi käyttäjä, pelaaja itse.
 
 
 ## Jatkokehitys
+- Double-toiminnon lisäys
+- Split-toiminnon lisäys
+- Statsien tallennus tiedostoon / lukeminen tiedostosta
+- 
 
 
