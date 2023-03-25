@@ -4,9 +4,9 @@
 
 ### Viikko 1:
 
-[GitLog](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+[GitLog](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/laskarit/viikko1/gitlog.txt)
 
-[Komentorivi](https://github.com/Ro0pE/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+[Komentorivi](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/laskarit/viikko1/komentorivi.txt)
 
 ### Viikko 2:
 
