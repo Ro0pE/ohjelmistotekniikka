@@ -19,7 +19,7 @@ public class Hand  {
     }
     
     public void addCardsToHand(Card card) {
-        hand.add(new Card(card.suite, card.value));
+        hand.add(new Card(card.suit, card.value));
     }
     
     public void showHand() {

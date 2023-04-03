@@ -9,11 +9,11 @@ package com.mycompany.blackjack;
  * @author suvik
  */
 public class Card {
-    String suite;
+    String suit;
     int value;
     
-    public Card(String suite, int value) {
-        this.suite = suite;
+    public Card(String suit, int value) {
+        this.suit = suit;
         this.value = value;
     }
     
@@ -39,14 +39,14 @@ public class Card {
                 break;
         }
         
-        return this.suite + " " + this.value;
+        return this.suit + " " + this.value;
     }
     
     public int getValue() {
         return this.value;
     }
-    public String getSuite() {
-        return this.suite;
+    public String getSuit() {
+        return this.suit;
     }
     
 }

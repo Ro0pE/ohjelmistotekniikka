@@ -41,10 +41,10 @@ public class Player {
     public void showHand() {
         for (int i = 0; i < this.hand.getHand().size(); i++) {
             if (this.hand.getHand().get(i).getValue() > 10) {
-                System.out.println(this.hand.getHand().get(i).getSuite());
+                System.out.println(this.hand.getHand().get(i).getSuit());
                 
             } else {
-                System.out.println(this.hand.getHand().get(i).getSuite() + " " + this.hand.getHand().get(i).getValue());
+                System.out.println(this.hand.getHand().get(i).getSuit() + " " + this.hand.getHand().get(i).getValue());
                 
             }
             
