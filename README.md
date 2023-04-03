@@ -4,6 +4,6 @@
 
 ### Dokumentaatio:
 
-[Tuntikirjanpito](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/tyoaikakirjanpito/tuntikirjanpito.md)
+[Tuntikirjanpito](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 
 [Changelog](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/changelog.md)
