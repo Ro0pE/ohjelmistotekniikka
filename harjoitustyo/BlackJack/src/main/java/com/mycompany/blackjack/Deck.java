@@ -19,10 +19,10 @@ public class Deck {
     public Deck() {
         this.deck = new ArrayList<>();
         
-
-                
-
-        
+    }
+    
+    public int getDeckSize() {
+        return this.deck.size();
     }
     
     public Card getRandomCard() {

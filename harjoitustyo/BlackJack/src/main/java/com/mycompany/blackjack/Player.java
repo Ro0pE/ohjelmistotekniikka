@@ -76,8 +76,14 @@ public class Player {
     public void setWinner() {
         this.winner = true;
     }
+    public boolean getWinner() {
+        return this.winner;
+    }
     public void setLoser() {
         this.loser = true;
+    }
+    public boolean getLoser() {
+        return this.loser;
     }
     
     public void clearStats () {
