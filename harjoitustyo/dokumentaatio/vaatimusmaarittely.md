@@ -21,24 +21,26 @@ Pelillä on vain yksi käyttäjä, pelaaja itse.
 
 
 ## Pelin toiminnallisuus
-- Peli alkaa, kun pelaaja painaa start game - nappia
-- Pelaaja asettaa panoksen, minkä pitää olla < kuin pelitilin saldo
-- Peli alkaa ja pelaajille (käyttäjä ja tietokone) jaetaan kortit
-- Korttien summat ilmoitetaan pelaajille, tietokoneen korteista vain toisen kortin luku ilmoitetaan
-- Pelaaja voi painaa nappia Hit, jolloin hän saa yhden kortin lisää
-- Pelaajan korttien yhteisumma ilmoitetaan. Mikäli summa on > 21, pelaaja häviää ja peli loppuu
-- Pelaaja voi painaa Hit - nappia uudestaan mikäli haluaa uuden kortin.
-- Tämän jälkeen korttien summa ilmoitetaan taas. 
-- Pelaaja voi painaa Stay - nappia, jolloin hän ei saa enää ottaa lisäkortteja ja vuoro siirtyy tietokoneelle
-- Tietokoneen tuntematon kortti näytetään ja sen arvo lisätään tietokoneen käden yhteissummaan
-- Tietokone ottaa joko lisäkortin tai sitten lopettaa korttien ottamisen, riippuen käden arvosta
-- Tulos tarkistetaan, voittaja julistetaan ja mikäli pelaaja voittaa, voittosumma lasketaan ja lisätään pelaajan pelitilille
+- Peli alkaa, kun pelaaja painaa start game - nappia - tehty
+- Pelaaja asettaa panoksen, minkä pitää olla < kuin pelitilin saldo - tehty
+- Peli alkaa ja pelaajille (käyttäjä ja tietokone) jaetaan kortit - tehty
+- Korttien summat ilmoitetaan pelaajille, tietokoneen korteista vain toisen kortin luku ilmoitetaan - tehty
+- Pelaaja voi painaa nappia Hit, jolloin hän saa yhden kortin lisää - tehty
+- Pelaajan korttien yhteisumma ilmoitetaan. Mikäli summa on > 21, pelaaja häviää ja peli loppuu - tehty
+- Pelaaja voi painaa Hit - nappia uudestaan mikäli haluaa uuden kortin. - tehty
+- Tämän jälkeen korttien summa ilmoitetaan taas. - tehty
+- Pelaaja voi painaa Stay - nappia, jolloin hän ei saa enää ottaa lisäkortteja ja vuoro siirtyy tietokoneelle - tehty
+- Tietokoneen tuntematon kortti näytetään ja sen arvo lisätään tietokoneen käden yhteissummaan - tehty
+- Tietokone ottaa joko lisäkortin tai sitten lopettaa korttien ottamisen, riippuen käden arvosta - tehty
+- Tulos tarkistetaan, voittaja julistetaan ja mikäli pelaaja voittaa, voittosumma lasketaan ja lisätään pelaajan pelitilille - tehty
 
 
 ## Jatkokehitys
-- Double-toiminnon lisäys
+- Double-toiminnon lisäys - tehty
 - Split-toiminnon lisäys
 - Statsien tallennus tiedostoon / lukeminen tiedostosta
+- Tekstikäyttöliittymän korvaaminen graafisella käytttöliittymällä
+- Testaus - kesken
 
 
 
