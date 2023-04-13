@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.blackjack;
+import java.io.File;  
+import java.io.FileWriter;
+import java.io.IOException;   
 
 import java.util.Scanner;
 
@@ -18,6 +21,9 @@ public class Game {
     int bet;
     Boolean checkBalance;
     int profit;
+    File stats;
+    double oldStats;
+    
     
     int input;
     public Game(){
@@ -29,9 +35,58 @@ public class Game {
         gameIsOn = true;
         checkBalance = false;
         
+        
     }
     
+    public void createStatsFile(){
+        try {
+          stats = new File("stats.txt");
+        if (stats.createNewFile()) {
+          System.out.println("File created: " + stats.getName());
+        } else {
+          System.out.println("File already exists.");
+        }
+      } catch (IOException e) {
+        System.out.println("An error occurred.");
+        
+    }
+    }
+    public double getStats() {
+            try {
+            File statsFile = new File("stats.txt");
+            Scanner myReader = new Scanner(statsFile);
+            while (myReader.hasNextLine()) {
+              String data = myReader.nextLine();
+              oldStats = Double.parseDouble(data);
+            }
+            myReader.close();
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+            return oldStats;
+  }
+    
+        
+    public void saveStats() {
+
+    
+    /*try {
+      FileWriter saveFiles = new FileWriter("stats.txt");
+      double newBalance = getStats();
+      newBalance =+ player.getAccountBalance();
+      saveFiles.write((int) newBalance);
+      saveFiles.close();
+      System.out.println("Successfully wrote to the file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      
+    }*/
+  }
+    
+    
     public void gameOptions() {
+            createStatsFile();
             GameService newGame = new GameService(ai,player);
    
             while (checkBalance == false) {
@@ -153,6 +208,7 @@ public class Game {
                 case 3:
                     System.out.println("Closing game");
                     scanner.close();
+                    saveStats();
                     break;
                 case 4:
                     System.out.println("New game!");

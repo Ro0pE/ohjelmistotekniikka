@@ -76,6 +76,9 @@ public class Player {
     public void setWinner() {
         this.winner = true;
     }
+    public void setTest(){
+        
+    }
     public boolean getWinner() {
         return this.winner;
     }
@@ -94,4 +97,5 @@ public class Player {
         this.handValue = 0;
         
     }
+    
 }

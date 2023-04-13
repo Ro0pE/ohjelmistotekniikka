@@ -1,3 +1,4 @@
+import com.mycompany.blackjack.Card;
 import com.mycompany.blackjack.Player;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,10 +37,22 @@ public class PlayerTest {
         
     }
     @Test
-    public void setWinnerWorks() {
-        player.setWinner(); // jatka töstö
-      
-        
+    public void handValueIsCorrect() {
+        Card cardAce = new Card("Spades", 14);
+        player.setHandValue(cardAce);
+        assertEquals(11, player.getHandValue());   
+     
+    }
+    
+    @Test
+    public void handValueWithMultipleCardsWorks() {
+        Card cardAce = new Card("Hearts", 14);
+        Card card5 = new Card("Spades", 5);
+        Card cardQueen = new Card("Diamonds", 12);
+        player.setHandValue(cardAce);
+        player.setHandValue(card5);
+        player.setHandValue(cardQueen);
+        assertEquals(16, player.getHandValue());
     }
 
 }
