@@ -26,10 +26,10 @@ public class Deck {
     }
     
     public Card getRandomCard() {
-        int max_num = deck.size();
-        int min_num = 0;
+        int maxNum = deck.size();
+        int minNum = 0;
         Random randomNumber = new Random();
-        int x = randomNumber.nextInt(max_num - min_num) + min_num;
+        int x = randomNumber.nextInt(maxNum - minNum) + minNum;
         Card randomCard = deck.get(x);
         deck.remove(x);
         return randomCard;
@@ -37,9 +37,8 @@ public class Deck {
 
     }
     
-    public void createDeck() {
-        
-        for (int i = 2; i < 15;i++) {
+    public void createDeck() {   
+        for (int i = 2; i < 15; i++) {
             String suit;
             switch (i) {
                 case 11:
@@ -61,9 +60,8 @@ public class Deck {
             deck.add(new Card("Spades " + suit, i));
             deck.add(new Card("Diamonds " + suit, i));
             deck.add(new Card("Clubs " + suit, i));
-            deck.add(new Card("Hearts "+ suit, i));
+            deck.add(new Card("Hearts " + suit, i));
         }
-        
     }
     
 

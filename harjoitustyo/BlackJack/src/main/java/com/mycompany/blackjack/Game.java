@@ -34,6 +34,7 @@ public class Game {
         ai = new Player("AI");
         gameIsOn = true;
         checkBalance = false;
+        oldStats = 0;
         
         
     }
@@ -57,12 +58,14 @@ public class Game {
             Scanner myReader = new Scanner(statsFile);
             while (myReader.hasNextLine()) {
               String data = myReader.nextLine();
+                System.out.println("Testi " + data);
               oldStats = Double.parseDouble(data);
+                System.out.println("old stats:" + oldStats);
             }
             myReader.close();
           } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            System.out.println("An error occurred.!!!!!!");
+            
           }
             return oldStats;
   }
@@ -71,23 +74,27 @@ public class Game {
     public void saveStats() {
 
     
-    /*try {
+    try {
       FileWriter saveFiles = new FileWriter("stats.txt");
       double newBalance = getStats();
+       
       newBalance =+ player.getAccountBalance();
-      saveFiles.write((int) newBalance);
+      System.out.println("toimiikos balanze "  + newBalance);
+      saveFiles.write(Integer.toString((int) player.getAccountBalance()));
       saveFiles.close();
       System.out.println("Successfully wrote to the file.");
     } catch (IOException e) {
       System.out.println("An error occurred.");
       
-    }*/
+    }
   }
     
     
     public void gameOptions() {
             createStatsFile();
             GameService newGame = new GameService(ai,player);
+            player.setBalance(getStats());
+           
    
             while (checkBalance == false) {
             System.out.println("Your balance is " + player.getAccountBalance());
@@ -206,9 +213,9 @@ public class Game {
             
             switch (input) {
                 case 3:
-                    System.out.println("Closing game");
-                    scanner.close();
+                    System.out.println("Closing game");            
                     saveStats();
+                    scanner.close();
                     break;
                 case 4:
                     System.out.println("New game!");

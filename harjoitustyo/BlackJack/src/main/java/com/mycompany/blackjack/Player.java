@@ -22,7 +22,7 @@ public class Player {
         this.hand = new Hand();
         this.handValue = 0;
         this.name = name;
-        this.accountBalance = 500;
+        this.accountBalance = 0;
         this.winner = false;
         this.loser = false;
         this.gotAce = false;
@@ -89,7 +89,7 @@ public class Player {
         return this.loser;
     }
     
-    public void clearStats () {
+    public void clearStats() {
         this.hand = new Hand();
         this.loser = false;
         this.winner = false;

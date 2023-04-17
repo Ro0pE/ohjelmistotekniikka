@@ -9,12 +9,12 @@ public class GameService {
     
     
     public GameService(Player ai, Player player) {
-       this.deck = new Deck();
-       this.ai = ai;
-       this.player = player;
+        this.deck = new Deck();
+        this.ai = ai;
+        this.player = player;
         
     }
-    public void startGame(){
+    public void startGame() {
         this.deck.createDeck();
         
         
@@ -27,7 +27,7 @@ public class GameService {
         return randomCard;
     
     }
-        public Card dealAI() {
+    public Card dealAI() {
         Card randomCard = this.deck.getRandomCard();
         this.ai.hand.addCardsToHand(randomCard);
         this.ai.setHandValue(randomCard);
@@ -39,7 +39,7 @@ public class GameService {
     public void checkBlackJack(int bet) {
         double blackJackMultiple = 1.5;
         double amount;
-        if (ai.getHandValue()== 21 && player.getHandValue() == 21) {
+        if (ai.getHandValue() == 21 && player.getHandValue() == 21) {
             System.out.println("Both have BLACK JACK. DRAW! Bet is returned");
             player.setWinner();
             player.setBalance(bet);
@@ -59,7 +59,7 @@ public class GameService {
     
     public void checkWinner(int bet) {
         System.out.println("Checking winner:");
-        if (ai.getHandValue() <= 21 && player.getHandValue() <= 21 ) {
+        if (ai.getHandValue() <= 21 && player.getHandValue() <= 21) {
             if (ai.getHandValue() == player.getHandValue()) {
                 System.out.println("DRAW so AI wins!");
                 player.setLoser();
@@ -73,8 +73,7 @@ public class GameService {
                 player.setWinner();
                 player.setBalance(bet);
                 System.out.println("Player balance is " + this.player.getAccountBalance());
-            }
-            
+            }    
         } else if (ai.getHandValue() >= 21) {
             System.out.println("PLAYER WON!");
             player.setWinner();
@@ -82,5 +81,4 @@ public class GameService {
             System.out.println("Player balance is " + this.player.getAccountBalance());
         }
     }
-    
 }

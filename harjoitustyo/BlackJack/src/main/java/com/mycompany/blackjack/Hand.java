@@ -28,7 +28,7 @@ public class Hand  {
         }
        
     }
-    public ArrayList<Card> getHand(){
+    public ArrayList<Card> getHand() {
         return this.hand;
     }
     
