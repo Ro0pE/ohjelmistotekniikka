@@ -36,11 +36,11 @@ Pelillä on vain yksi käyttäjä, pelaaja itse.
 
 
 ## Jatkokehitys
-- Double-toiminnon lisäys - **tehty**
+- Double-toiminnon lisäys - **tehty*
 - Split-toiminnon lisäys
-- Statsien tallennus tiedostoon / lukeminen tiedostosta
+- Statsien tallennus tiedostoon / lukeminen tiedostosta **tehty**  **vaatii rajusti refaktorointia**
 - Tekstikäyttöliittymän korvaaminen graafisella käytttöliittymällä
-- Testaus - **kesken**
+- Testaus - **kesken** **20%**
 
 
 
