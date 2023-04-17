@@ -4,4 +4,4 @@
 | :----:|:-----| :-----|
 | 25.3.23 | 3   | Tutustuminen JavaFx, luokkien määrittelyä, toiminnallisuuden suunnittelua |
 |  3.4.23 | 8   | Alustava peli rakennettu, card-class testattu |
-|  17.4.23 | 8   | Testirivikattavuus +20% ja checkstyle lisätty. Pelaajan tilitiedot ladataan tiedostosta |
+|  17.4.23 | 2   | Testirivikattavuus +20% ja checkstyle lisätty. Pelaajan tilitiedot ladataan tiedostosta |
