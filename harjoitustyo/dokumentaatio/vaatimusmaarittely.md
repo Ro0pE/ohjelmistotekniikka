@@ -39,7 +39,7 @@ Pelillä on vain yksi käyttäjä, pelaaja itse.
 - Double-toiminnon lisäys - **tehty*
 - Split-toiminnon lisäys
 - Statsien tallennus tiedostoon / lukeminen tiedostosta **tehty, refaktoroitava rankasti**
-- Tekstikäyttöliittymän korvaaminen graafisella käytttöliittymällä
+- Tekstikäyttöliittymän korvaaminen graafisella käytttöliittymällä **Alustava UI rakennettu**
 - Testaus - **kesken** **20%**
 
 
