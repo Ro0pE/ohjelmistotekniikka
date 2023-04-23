@@ -8,4 +8,6 @@
 
 [Changelog](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/changelog.md)
 
-[Release] (https://github.com/Ro0pE/ohjelmistotekniikka/releases/tag/viikko5)
+### Releaset
+
+[Viikko 5](https://github.com/Ro0pE/ohjelmistotekniikka/releases/tag/viikko5)
