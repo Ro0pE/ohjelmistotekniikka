@@ -1,5 +1,7 @@
-import com.mycompany.blackjack.Card;
-import com.mycompany.blackjack.Deck;
+package testing;
+
+import BlackJack.cards.Card;
+import BlackJack.cards.Deck;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

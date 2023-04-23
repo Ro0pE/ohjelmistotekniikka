@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.mycompany.blackjack;
+
+package blackjack.ui;
+import BlackJack.ui.gameService.GameService;
+import BlackJack.cards.Card;
+import blackjack.player.Player;
 import java.io.File;  
 import java.io.FileWriter;
 import java.io.IOException;   
@@ -276,7 +276,7 @@ public class Game {
             newGame.dealPlayer();
             System.out.println(newGame.player.getHandValue());
             newGame.checkBlackJack(bet);
-        while(!player.loser && !player.winner) {    
+            while(!player.loser && !player.winner) {    
             System.out.println("[1] Hit");
             System.out.println("[2] Stay");
             System.out.println("[3] Double");

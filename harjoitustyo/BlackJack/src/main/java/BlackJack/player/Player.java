@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.blackjack;
+package blackjack.player;
+
+import BlackJack.cards.Card;
+import BlackJack.cards.Hand;
 
 /**
  *
@@ -11,9 +14,9 @@ package com.mycompany.blackjack;
 public class Player {
     String name;
     double accountBalance;
-    Boolean winner;
-    Boolean loser;
-    Hand hand;
+    public Boolean winner;
+    public Boolean loser;
+    public Hand hand;
     int handValue;
     boolean gotAce;
     

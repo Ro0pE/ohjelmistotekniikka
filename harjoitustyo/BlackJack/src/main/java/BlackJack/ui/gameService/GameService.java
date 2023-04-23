@@ -1,11 +1,15 @@
 
 
-package com.mycompany.blackjack;
+package BlackJack.ui.gameService;
 
-public class GameService {
-    Deck deck;
-    Player ai;
-    Player player;
+import BlackJack.cards.Card;
+import BlackJack.cards.Deck;
+import blackjack.player.Player;
+
+public class GameService { 
+    public Deck deck;
+    public Player ai;
+    public Player player;
     
     
     public GameService(Player ai, Player player) {
