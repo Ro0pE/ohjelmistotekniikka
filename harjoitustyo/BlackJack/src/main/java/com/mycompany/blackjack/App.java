@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -17,11 +18,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         
-        Game game = new Game();
+        Game game = new Game(stage);
         game.startGame();
 
-       // stage.setScene(scene);
-       // stage.show();
+
 
  
 

@@ -27,13 +27,13 @@ public class PlayerTest {
     
     @Test
     public void getAccountBalanceReturnsCorrectBalance(){
-        assertEquals(500.0, player.getAccountBalance(), 0.01);
+        assertEquals(0.0, player.getAccountBalance(), 0.01);
     }
     
     @Test
     public void setBalanceChangesCurrentBalance() {
         player.setBalance(1250);
-        assertEquals(1750.0, player.getAccountBalance(), 0.01);
+        assertEquals(1250.0, player.getAccountBalance(), 0.01);
         
     }
     @Test

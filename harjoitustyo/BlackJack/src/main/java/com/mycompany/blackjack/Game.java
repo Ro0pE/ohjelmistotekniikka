@@ -8,6 +8,16 @@ import java.io.FileWriter;
 import java.io.IOException;   
 
 import java.util.Scanner;
+import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -23,10 +33,15 @@ public class Game {
     int profit;
     File stats;
     double oldStats;
+    Stage stage;
+    HBox playerHand;
+    HBox handValues;
+    HBox opponentHand;
     
     
     int input;
-    public Game(){
+    public Game(Stage stage){
+        this.stage = stage;
         bet = 0;
         profit = 0;
         scanner = new Scanner(System.in);
@@ -35,9 +50,148 @@ public class Game {
         gameIsOn = true;
         checkBalance = false;
         oldStats = 0;
+        playerHand = new HBox(15);
+        opponentHand = new HBox(15);
+        handValues = new HBox(15);
         
         
     }
+    public String getHandValue(Player player) {
+        return String.valueOf(player.getHandValue());
+    }
+    public Button quitGameButton() {
+        Button quitGame = new Button("Quit game");
+        quitGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+               stage.close();    
+            }
+        });
+        return quitGame;
+        
+    }
+    public void startOptionsUI() {
+        Button newGame = new Button("New game");
+        newGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+               gameUI();
+            }
+        });
+        Button loadGame = new Button("Load game");
+        
+        
+
+        VBox optionsSetup = new VBox(8);
+        optionsSetup.setPrefSize(600, 500);
+        optionsSetup.getChildren().add(newGame);
+        optionsSetup.getChildren().add(loadGame);
+        optionsSetup.getChildren().add(quitGameButton());
+        Scene startScene = new Scene(optionsSetup);
+        stage.setScene(startScene);
+        stage.show();
+       
+        
+    }
+    
+    public void gameUI() {
+        GameService newGame = new GameService(ai, player);
+        newGame.startGame();
+        Card aiFirstCard = newGame.dealAI();
+        Card aiSecondCard = newGame.dealAI();
+        Card playerFirstCard = newGame.dealPlayer();
+        Card playerSecondCard = newGame.dealPlayer();
+        
+
+        HBox actionButtons = new HBox();
+        Button hitButton = new Button("Hit");
+        hitButton.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               Card newCard = newGame.dealPlayer();
+               playerHand.getChildren().add(new Label(newCard.getSuit() + " " + newCard.getValue()));
+               //handValues = new HBox();
+               
+               
+            }
+        });
+        Button stayButton = new Button("Stay");
+           stayButton.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               while (ai.getHandValue() < 17) {
+                Card newCard = newGame.dealAI();
+                opponentHand.getChildren().add(new Label(newCard.getSuit() + " " + newCard.getValue()));
+                   
+               }
+               
+               //handValues = new HBox();
+               
+               
+            }
+        });
+        Button doubleButton = new Button("Double");
+        actionButtons.getChildren().add(hitButton);
+        actionButtons.getChildren().add(stayButton);
+        actionButtons.getChildren().add(doubleButton);
+        actionButtons.setTranslateX(200);
+        actionButtons.setTranslateY(300);
+        
+        
+            
+       
+       
+        opponentHand.setTranslateX(200);
+        opponentHand.setTranslateY(150);
+        opponentHand.getChildren().add(new Label(aiFirstCard.getSuit() + " " + aiFirstCard.getValue()));
+        opponentHand.getChildren().add(new Label(aiSecondCard.getSuit() + " " + aiSecondCard.getValue()));
+
+        
+        
+        playerHand.setTranslateX(200);
+        playerHand.setTranslateY(-150);
+        playerHand.getChildren().add(new Label(playerFirstCard.getSuit() + " " + playerFirstCard.getValue()));
+        playerHand.getChildren().add(new Label(playerSecondCard.getSuit() + " " + playerSecondCard.getValue()));
+    
+        
+        handValues.getChildren().add(new Label(getHandValue(player)));
+        
+
+        
+        BorderPane gameSetup = new BorderPane();
+        gameSetup.setPrefSize(750, 750);
+        gameSetup.setTop(opponentHand);
+        gameSetup.setRight(quitGameButton());
+        gameSetup.setBottom(playerHand);
+        gameSetup.setLeft(handValues);
+        gameSetup.setCenter(actionButtons);
+        
+        Scene gameView= new Scene(gameSetup);
+        stage.setScene(gameView);
+        
+        final long startNanoTime = System.nanoTime();
+         new AnimationTimer()
+    {
+        public void handle(long currentNanoTime)
+        {
+            double t = (currentNanoTime - startNanoTime) / 1000000000.0; 
+            double x = 232 + 128 * Math.cos(t);
+            double y = 232 + 128 * Math.sin(t);
+            handValues.getChildren().clear();
+            handValues.getChildren().add(new Label("Player hand value: " + getHandValue(player)));
+            handValues.getChildren().add(new Label("Ai hand value: " + getHandValue(ai)));
+
+            
+        }
+    }.start();
+        
+        
+        
+        
+        stage.show();
+       
+    }
+    
     
     public void createStatsFile(){
         try {
@@ -94,6 +248,10 @@ public class Game {
             createStatsFile();
             GameService newGame = new GameService(ai,player);
             player.setBalance(getStats());
+            
+           
+            
+            
            
    
             while (checkBalance == false) {
@@ -245,10 +403,11 @@ public class Game {
     
     public void startGame() {
 
-            gameOptions();
+            startOptionsUI();
+            //gameOptions();
             
     
-            afterGameOptions();
+            //afterGameOptions();
             
                     
     }
