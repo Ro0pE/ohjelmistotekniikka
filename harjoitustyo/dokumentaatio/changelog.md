@@ -10,3 +10,11 @@
 - Pelaaja luo tilitiedoston kun aloittaa pelin ensimmäisen kerran
 - Pelaajan tilitiedot ladataan tiedostosta
 - Pelaajan tilitiedot päivittyvät kun pelaaja lopettaa pelin
+
+## Viikko 5
+- Tekstikäyttöliittymästä siirtyminen graafiseen, joten peli on tällä hetkellä "rikki".
+- Alustava UI rakennettu:
+    - Alkuvalikko: New Game, Load Game ja Quit Game - buttoneilla
+    - Pelinäkymä: Pelaajan ja vastustajan korttien arvot sekä käden arvo näkyvät näkymässä. 
+    - Pelinäkymässä on myös Hit, Stay ja Double - buttonit
+    - Pelaaja voi painaa Hit-buttonia ja ottaa lisää kortteja
