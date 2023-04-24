@@ -53,7 +53,7 @@ public class Game {
         playerHand = new HBox(15);
         opponentHand = new HBox(15);
         handValues = new HBox(15);
-        
+        System.out.println("test");
         
     }
     public String getHandValue(Player player) {
