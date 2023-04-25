@@ -14,6 +14,8 @@
 
 ## Komentorivitoiminnot
 
+Komennot suoritetaan projektin juuressa (sis. pom, target, src..)
+
 ### Testaus
 
 Komento:
