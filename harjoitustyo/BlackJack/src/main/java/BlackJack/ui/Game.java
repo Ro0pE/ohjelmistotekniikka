@@ -61,6 +61,8 @@ public class Game {
     }
     public Button quitGameButton() {
         Button quitGame = new Button("Quit game");
+        quitGame.setMinWidth(250);
+        quitGame.setMinHeight(80);
         quitGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -72,6 +74,8 @@ public class Game {
     }
     public void startOptionsUI() {
         Button newGame = new Button("New game");
+        newGame.setMinWidth(250);
+        newGame.setMinHeight(80);
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -79,16 +83,19 @@ public class Game {
             }
         });
         Button loadGame = new Button("Load game");
-        
-        
+        loadGame.setMinWidth(250);
+        loadGame.setMinHeight(80);
 
         VBox optionsSetup = new VBox(8);
-        optionsSetup.setPrefSize(600, 500);
+        optionsSetup.setMaxSize(250, 250);
+        optionsSetup.setPrefSize(250, 250);
         optionsSetup.getChildren().add(newGame);
         optionsSetup.getChildren().add(loadGame);
         optionsSetup.getChildren().add(quitGameButton());
+       
         Scene startScene = new Scene(optionsSetup);
         stage.setScene(startScene);
+        stage.setResizable(false);
         stage.show();
        
         
@@ -122,6 +129,10 @@ public class Game {
                while (ai.getHandValue() < 17) {
                 Card newCard = newGame.dealAI();
                 opponentHand.getChildren().add(new Label(newCard.getSuit() + " " + newCard.getValue()));
+                if (ai.getHandValue() > 21) {
+                    player.setWinner();
+                    ai.setLoser();
+                }
                    
                }
                
@@ -137,29 +148,22 @@ public class Game {
         actionButtons.setTranslateX(200);
         actionButtons.setTranslateY(300);
         
-        
-            
-       
-       
         opponentHand.setTranslateX(200);
         opponentHand.setTranslateY(150);
         opponentHand.getChildren().add(new Label(aiFirstCard.getSuit() + " " + aiFirstCard.getValue()));
         opponentHand.getChildren().add(new Label(aiSecondCard.getSuit() + " " + aiSecondCard.getValue()));
 
-        
-        
         playerHand.setTranslateX(200);
         playerHand.setTranslateY(-150);
         playerHand.getChildren().add(new Label(playerFirstCard.getSuit() + " " + playerFirstCard.getValue()));
         playerHand.getChildren().add(new Label(playerSecondCard.getSuit() + " " + playerSecondCard.getValue()));
-    
+
         
         handValues.getChildren().add(new Label(getHandValue(player)));
-        
 
         
         BorderPane gameSetup = new BorderPane();
-        gameSetup.setPrefSize(750, 750);
+        gameSetup.setPrefSize(600, 600);
         gameSetup.setTop(opponentHand);
         gameSetup.setRight(quitGameButton());
         gameSetup.setBottom(playerHand);
@@ -187,7 +191,7 @@ public class Game {
         
         
         
-        
+        stage.setResizable(false);
         stage.show();
        
     }
