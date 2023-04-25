@@ -7,3 +7,8 @@
 |  17.4.23 | 2   | Testirivikattavuus +20% ja checkstyle lisätty. Pelaajan tilitiedot ladataan tiedostosta |
 |  23.4.23 | 5   | Testirivikattavuus +60%, käyttöliittymä poistettu testeistä. Graafinen ui aloitettu. Pakkausrakennetta kehitetty|
 |  25.4.23 | 4   | Ohjelman hajoittaminen, pakettien nimien ja rakenteen kanssa tappelua|
+
+
+
+
+Tunteja yhteensä: 22h
