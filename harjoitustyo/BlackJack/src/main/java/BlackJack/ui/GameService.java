@@ -1,6 +1,6 @@
 
 
-package BlackJack.ui.gameService;
+package BlackJack.ui;
 
 import BlackJack.cards.Card;
 import BlackJack.cards.Deck;

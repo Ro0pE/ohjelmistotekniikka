@@ -1,6 +1,6 @@
 
 package blackjack.ui;
-import BlackJack.ui.gameService.GameService;
+import BlackJack.ui.GameService;
 import BlackJack.cards.Card;
 import blackjack.player.Player;
 import java.io.File;  

@@ -5,6 +5,8 @@
     "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress files="com.mycompany.blackjack.Game.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="com.mycompany.blackjack.GameService.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="BlackJack.ui.Game.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="BlackJack.ui.GameService.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="BlackJack.ui.App.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="BlackJack.ui.Main.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
