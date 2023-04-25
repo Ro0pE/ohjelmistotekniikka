@@ -17,27 +17,32 @@
 ### Testaus
 
 Komento:
-
+```
 mvn test
+```
 
 Testikattavuusraportin komento:
-
+```
 mvn jacoco:report
-
+```
 Kattavuusraportti löytyy selaimella: _target/site/jacoco/index.html_
 
 ### Suoritettavan jarin generointi
 
 Komento:
-
+```
 mvn package
+```
 
 Komennon jälkeen hakemistosta _target_ löytyy jar-tiedosto _BlackJack-1.0-SNAPSHOT.jar_
 
 ### Checkstyle
 
  Komento:
- 
+ ```
  mvn jxr:jxr checkstyle:checkstyle
+ ```
 
  Checkstyle virheet löytyvät selaimella: _target/site/checkstyle.html_
+ 
+ 
