@@ -27,7 +27,7 @@ mvn jacoco:report
 ```
 Kattavuusraportti löytyy selaimella: _target/site/jacoco/index.html_
 
-### Suoritettavan jarin generointi
+### Jar-tiedoston generointi
 
 Komento:
 ```
