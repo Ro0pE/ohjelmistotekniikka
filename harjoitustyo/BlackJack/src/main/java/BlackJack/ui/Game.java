@@ -15,7 +15,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,6 +39,8 @@ public class Game {
     HBox playerHand;
     HBox handValues;
     HBox opponentHand;
+    HBox showWinner;
+
     
     
     int input;
@@ -50,10 +54,10 @@ public class Game {
         gameIsOn = true;
         checkBalance = false;
         oldStats = 0;
-        playerHand = new HBox(15);
-        opponentHand = new HBox(15);
-        handValues = new HBox(15);
-        System.out.println("test");
+        playerHand = new HBox();
+        opponentHand = new HBox();
+        handValues = new HBox();
+        showWinner = new HBox();
         
     }
     public String getHandValue(Player player) {
@@ -117,6 +121,11 @@ public class Game {
            public void handle(ActionEvent event) {
                Card newCard = newGame.dealPlayer();
                playerHand.getChildren().add(new Label(newCard.getSuit() + " " + newCard.getValue()));
+               if (player.getHandValue() > 21) {
+                   player.setLoser();
+                   ai.setWinner();
+                   showWinner.getChildren().add(new Label("Ai WON!"));
+               }
                //handValues = new HBox();
                
                
@@ -132,6 +141,17 @@ public class Game {
                 if (ai.getHandValue() > 21) {
                     player.setWinner();
                     ai.setLoser();
+                    showWinner.getChildren().add(new Label("Player WON!"));
+                } else if (ai.getHandValue() < 22 || ai.getHandValue() > 16) {
+                    newGame.checkWinner(50);
+                    if (player.getWinner()) {
+                        showWinner.getChildren().add(new Label("Player WON!"));
+                        
+                    } else {
+                        showWinner.getChildren().add(new Label("AI WON!"));
+                        
+                    }
+                  
                 }
                    
                }
@@ -142,35 +162,48 @@ public class Game {
             }
         });
         Button doubleButton = new Button("Double");
+        
         actionButtons.getChildren().add(hitButton);
         actionButtons.getChildren().add(stayButton);
         actionButtons.getChildren().add(doubleButton);
-        actionButtons.setTranslateX(200);
-        actionButtons.setTranslateY(300);
+
         
-        opponentHand.setTranslateX(200);
-        opponentHand.setTranslateY(150);
+ 
         opponentHand.getChildren().add(new Label(aiFirstCard.getSuit() + " " + aiFirstCard.getValue()));
         opponentHand.getChildren().add(new Label(aiSecondCard.getSuit() + " " + aiSecondCard.getValue()));
 
-        playerHand.setTranslateX(200);
-        playerHand.setTranslateY(-150);
         playerHand.getChildren().add(new Label(playerFirstCard.getSuit() + " " + playerFirstCard.getValue()));
         playerHand.getChildren().add(new Label(playerSecondCard.getSuit() + " " + playerSecondCard.getValue()));
+        VBox testi = new VBox();
+        testi.getChildren().add(new Label(playerFirstCard.getSuit() + " " + playerFirstCard.getValue()));
+        testi.getChildren().add(new Label(playerSecondCard.getSuit() + " " + playerSecondCard.getValue()));
+        
+        VBox testi2 = new VBox();
+        testi2.getChildren().add(new Label(playerFirstCard.getSuit() + " " + playerFirstCard.getValue()));
+        testi2.getChildren().add(new Label(playerSecondCard.getSuit() + " " + playerSecondCard.getValue()));
+        
+        handValues.getChildren().add(new Label("Player hand value: " + getHandValue(player)));
+        handValues.getChildren().add(new Label("AI hand value: " + getHandValue(ai)));
+        handValues.setSpacing(100);
+        TilePane board = new TilePane();
+        board.getChildren().add(handValues);
+        board.getChildren().add(testi2);
+        board.getChildren().add(hitButton);
+        board.getChildren().add(stayButton);
+        board.getChildren().add(testi);
+        board.getChildren().add(showWinner);
+        
+        System.out.println("Test " + handValues.toString());
+        
+        board.setMaxWidth(600);
+        board.setHgap(10);
+        board.setVgap(10);
+        
+
+
 
         
-        handValues.getChildren().add(new Label(getHandValue(player)));
-
-        
-        BorderPane gameSetup = new BorderPane();
-        gameSetup.setPrefSize(600, 600);
-        gameSetup.setTop(opponentHand);
-        gameSetup.setRight(quitGameButton());
-        gameSetup.setBottom(playerHand);
-        gameSetup.setLeft(handValues);
-        gameSetup.setCenter(actionButtons);
-        
-        Scene gameView= new Scene(gameSetup);
+        Scene gameView = new Scene(board,600,600);
         stage.setScene(gameView);
         
         final long startNanoTime = System.nanoTime();
@@ -184,6 +217,13 @@ public class Game {
             handValues.getChildren().clear();
             handValues.getChildren().add(new Label("Player hand value: " + getHandValue(player)));
             handValues.getChildren().add(new Label("Ai hand value: " + getHandValue(ai)));
+            
+            if(player.getLoser()) {
+                System.out.println("Player lost");
+            }
+            if (ai.getLoser()) {
+                System.out.println("Ai lost");
+            }
 
             
         }
@@ -191,7 +231,7 @@ public class Game {
         
         
         
-        stage.setResizable(false);
+        //stage.setResizable(false);
         stage.show();
        
     }
