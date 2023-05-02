@@ -18,3 +18,8 @@
     - Pelinäkymä: Pelaajan ja vastustajan korttien arvot sekä käden arvo näkyvät näkymässä. 
     - Pelinäkymässä on myös Hit, Stay ja Double - buttonit
     - Pelaaja voi painaa Hit-buttonia ja ottaa lisää kortteja
+
+## Viikko 6
+- Alustava toimiva ja pelattava versio rakennettu
+- Pelaajan tilitiedot päivittyvät tekstitiedostoon, mistä ne ladataan ennen peliä.
+
