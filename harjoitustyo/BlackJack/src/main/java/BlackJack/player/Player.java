@@ -39,6 +39,7 @@ public class Player {
         return this.accountBalance;
     }
     public void setBalance(double amount) {
+        System.out.println("adding " + amount);
         this.accountBalance = this.accountBalance + amount;
     }
     public void showHand() {
