@@ -9,8 +9,7 @@ import java.util.Random;
 import java.util.TreeMap;
 
 /**
- *
- * @author suvik
+ * Luokka rakentaa korttipakan ja tarjoaa toiminnallisuuden korttien satunnaiseen poistoon
  */
 public class Deck {
  
@@ -25,6 +24,13 @@ public class Deck {
         return this.deck.size();
     }
     
+
+ /**
+ * Arpoo satunnaisen kortin pakasta ja poistaa sen sieltä.
+ *
+ * @return    randomCard   palauttaa satunnaisesti vedetyn kortin pakasta.
+ *
+ */
     public Card getRandomCard() {
         int maxNum = deck.size();
         int minNum = 0;
@@ -36,7 +42,9 @@ public class Deck {
 
 
     }
-    
+ /**
+ * Metodi rakentaa korttipakan
+ */
     public void createDeck() {   
         for (int i = 2; i < 15; i++) {
             String suit;

@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package blackjack.player;
+package BlackJack.cards;
 
 import BlackJack.cards.Card;
 import BlackJack.cards.Hand;
 
 /**
- *
- * @author suvik
+ * Luokka pitää lukua pelaajan pelinaikaisista "tiloista" ja korttikädestä
  */
 public class Player {
     String name;
@@ -38,6 +37,12 @@ public class Player {
     public double getAccountBalance() {
         return this.accountBalance;
     }
+    /**
+ * Metodi lisää tai vähentää pelaajan tililtä rahaa annetun paramaterin verran
+ *
+ * @param   amount    Käyttäjän antama summa
+ *
+ */
     public void setBalance(double amount) {
         System.out.println("adding " + amount);
         this.accountBalance = this.accountBalance + amount;
@@ -54,6 +59,12 @@ public class Player {
             
         }
     }
+    /**
+ * Metodi lisää pelaajan käden arvoon parametrinä annetun kortin arvon
+ *
+ * @param   card   Käyttäjän antama kortti
+ *
+ */
     public void setHandValue(Card card) {
         int value = 0;
         if (card.getValue() > 10 && card.getValue() < 14) {
@@ -80,9 +91,7 @@ public class Player {
     public void setWinner() {
         this.winner = true;
     }
-    public void setTest(){
-        
-    }
+
     public boolean getWinner() {
         return this.winner;
     }
@@ -92,7 +101,9 @@ public class Player {
     public boolean getLoser() {
         return this.loser;
     }
-    
+/**
+ * Alustaa käyttäjän pelinaikaiset tiedot uutta peliä varten.
+ */
     public void clearStats() {
         this.hand = new Hand();
         this.loser = false;

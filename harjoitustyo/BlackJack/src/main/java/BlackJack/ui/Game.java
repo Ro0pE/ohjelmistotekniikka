@@ -2,7 +2,7 @@
 package blackjack.ui;
 import BlackJack.ui.GameService;
 import BlackJack.cards.Card;
-import blackjack.player.Player;
+import BlackJack.cards.Player;
 import java.io.File;  
 import java.io.FileWriter;
 import java.io.IOException;   
@@ -23,8 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- *
- * @author suvik
+ * Luokka hoitaa pelin graafisen ulkoasun
  */
 public class Game {
     Boolean gameIsOn;

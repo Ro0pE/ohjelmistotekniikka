@@ -7,8 +7,7 @@ package BlackJack.cards;
 import java.util.ArrayList;
 
 /**
- *
- * @author suvik
+ * Luokka tarjoaa toiminnallisuuden pelaajan korttikäden tutkimiseen ja muokkkaamiseen
  */
 public class Hand  {
     ArrayList<Card> hand;
@@ -17,6 +16,10 @@ public class Hand  {
         hand = new ArrayList<>();
         
     }
+    /**
+ * Lisää annetun kortin pelaajan käteen
+* @param   card   Käyttäjän antama kortti
+ */
     
     public void addCardsToHand(Card card) {
         hand.add(new Card(card.suit, card.value));

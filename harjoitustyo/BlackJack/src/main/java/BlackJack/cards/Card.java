@@ -2,18 +2,20 @@
 package BlackJack.cards;
 
 /**
- *
- * @author suvik
+ * Luokka huolehtii korteista ja pitää huolen, että pelitilanteessa korttien arvot ovat oikein
  */
 public class Card {
-    String suit;
-    int value;
+    public String suit;
+    public int value;
     
     public Card(String suit, int value) {
         this.suit = suit;
         this.value = value;
     }
-    
+
+ /**
+ * Metodi antaa kuvakorteille oikeat arvot
+ */
     public String showCard() {
         switch (this.value) {
             case 11:

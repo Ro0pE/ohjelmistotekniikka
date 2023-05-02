@@ -4,14 +4,16 @@ package BlackJack.ui;
 
 import BlackJack.cards.Card;
 import BlackJack.cards.Deck;
-import blackjack.player.Player;
+import BlackJack.cards.Player;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+ /**
+ * Luokka huolehtii pelin käyttöliittymästä ja tarjoaa useita metodeja pelin toiminnaliisuuden takaamiseksi ja tiedostojen tallentamiseen.
+ */
 public class GameService { 
     public Deck deck;
     public Player ai;
@@ -20,7 +22,7 @@ public class GameService {
     public File stats;
     public double oldStats; 
     
-    
+
     
     public GameService(Player ai, Player player) {
         this.deck = new Deck();
@@ -125,7 +127,13 @@ public class GameService {
     }
     
 
-
+/**
+ * Metodi tarkistaa onko jompi kumpi pelaaja saanut black jackin.
+ *
+ * @param   bet   Käyttäjän antama panos mikä kerrotaan black jack kertoimella
+ *
+ * 
+ */
     public void checkBlackJack(double bet) {
         
 
@@ -153,7 +161,13 @@ public class GameService {
 
     }
  
-    
+  /**
+ * Metodi tarkistaa pelin voittajan.
+ *
+ * @param   bet   Käyttäjän antama panos mikä kerrotaan normikertoimella
+ *
+ * 
+ */
     public void checkWinner(double bet) {
         System.out.println("Checking winner:");
         if (ai.getHandValue() <= 21 && player.getHandValue() <= 21) {
