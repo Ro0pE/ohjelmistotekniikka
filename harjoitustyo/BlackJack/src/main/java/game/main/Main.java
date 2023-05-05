@@ -1,8 +1,8 @@
 package game.main;
 
 
-import game.ui.App;
-import game.ui.App;
+import game.service.App;
+import game.service.App;
 
 
 

@@ -1,6 +1,6 @@
 
 package game.ui;
-import game.ui.GameService;
+import game.service.GameService;
 import game.cards.Card;
 import game.player.Player;
 import java.io.File;  
@@ -11,6 +11,8 @@ import java.util.Scanner;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,7 +28,7 @@ import javafx.stage.Stage;
 /**
  * Luokka hoitaa pelin graafisen ulkoasun
  */
-public class Game {
+public class GameUi {
     Boolean gameIsOn;
     Player player; 
     Player ai;
@@ -44,11 +47,18 @@ public class Game {
     boolean betIsSet;
     boolean firstRound;
     double currentBet;
+    Label betAmount;
+    Label checkWinner;
+    Label playerAccountBalance;
+    Button stayButton;
+    Boolean dealIsOn;
+    
+    
 
     
     
     int input;
-    public Game(Stage stage){
+    public GameUi(Stage stage){
         this.firstRound = true;
         this.betIsSet = false;
         this.counter = 0;
@@ -66,6 +76,11 @@ public class Game {
         handValues = new HBox();
         showWinner = new HBox();
         this.currentBet = 0;
+        betAmount = new Label("0");
+        checkWinner = new Label("");
+        playerAccountBalance = new Label("");
+        stayButton  = new Button("Stay");
+        dealIsOn = false;
         
     }
     public String getHandValue(Player player) {
@@ -91,6 +106,7 @@ public class Game {
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+               
                gameUI();
             }
         });
@@ -118,6 +134,8 @@ public class Game {
         GameService newGame = new GameService(ai, player);
         newGame.startGame();
         newGame.createStatsFile();
+        playerAccountBalance.setText("Account balance: " + Double.toString(newGame.getStats()));
+        
         System.out.println("settin balance  " + newGame.getStats());
         if (firstRound) {
             player.setBalance(newGame.getStats());
@@ -130,19 +148,28 @@ public class Game {
         Card playerFirstCard = newGame.dealPlayer();
         Card playerSecondCard = newGame.dealPlayer();
         
+        
         TextField betInput = new TextField();
         HBox actionButtons = new HBox();
-        Button playAgain = new Button("Play");
+        Button playAgain = new Button("Deal");
+        playAgain.setTranslateX(-250);
+        playAgain.setTranslateY(100);
+        playAgain.setScaleX(1.5);
+        playAgain.setScaleY(1.5);
            playAgain.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               if (betIsSet) {
+               if (betIsSet && !dealIsOn) {
+               dealIsOn = true;
                newGame.setBet(betInput, true);
                opponentHand.getChildren().clear();
                playerHand.getChildren().clear();
                counter = 0;
                ai.clearStats();
                player.clearStats();
+               playerAccountBalance.setText("Account balance: " +Double.toString(player.getAccountBalance()));
+               checkWinner.setText("");
+              
                gameUI();
                    
                }
@@ -154,21 +181,34 @@ public class Game {
         });
         
         
-        Button setBet = new Button("Set");
+        Button setBet = new Button("Set bet");
            setBet.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
+               
                betIsSet = newGame.setBet(betInput,betIsSet);
-               currentBet = Double.valueOf(betInput.getText());
+               if (!betInput.getText().isEmpty()) {
+                   currentBet = Double.valueOf(betInput.getText());
+                   betAmount.setText("Your bet: " + Double.toString(currentBet));
+                   
+                   
+                   
+                   
+               }
+               
               
                
                
             }
         });
         Button hitButton = new Button("Hit");
+        hitButton.setTranslateY(100);
+        hitButton.setScaleX(1.5);
+        hitButton.setScaleY(1.5);
+        
         System.out.println("bet is set? " +betIsSet);
        
-            System.out.println("ASGA");
+           
            hitButton.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
@@ -176,11 +216,13 @@ public class Game {
                Card newCard = newGame.dealPlayer();
                playerHand.getChildren().add(new Label(newCard.getSuit() + " " + newCard.getValue()));
                if (player.getHandValue() > 21) {
-                   newGame.checkWinner(currentBet);
+                   newGame.checkWinner(currentBet,betAmount);
+                   betIsSet = false;
+                   dealIsOn = false;
                }
                    
-               } else {
-                   System.out.println("Set bet!");
+               } else if (player.getHandValue() == 21){
+                   System.out.println("Stay pitäs lähtee rullaa");
                }
           
             }
@@ -188,24 +230,30 @@ public class Game {
             
         
 
-        Button stayButton = new Button("Stay");
+        
+        stayButton.setTranslateY(100);
+        stayButton.setScaleX(1.5);
+        stayButton.setScaleY(1.5);
            stayButton.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               if (player.getHandValue() < 22 && ai.getHandValue() > 17) {
-                   newGame.checkWinner(currentBet);
+               if (player.getHandValue() < 22 && ai.getHandValue() >= 17) {
+                   newGame.checkWinner(currentBet,checkWinner);
                    betIsSet = false;
+                   dealIsOn = false;
                } else {
                                 
                while (ai.getHandValue() < 17) {
                 Card newCard = newGame.dealAI();
                 opponentHand.getChildren().add(new Label(newCard.getSuit() + " " + newCard.getValue()));
                 if (ai.getHandValue() > 21) {
-                    newGame.checkWinner(currentBet);
+                    newGame.checkWinner(currentBet,checkWinner);
                     betIsSet = false;
+                    dealIsOn = false;
                 } else if (ai.getHandValue() < 22 && ai.getHandValue() > 16) {
-                    newGame.checkWinner(currentBet); 
+                    newGame.checkWinner(currentBet,checkWinner); 
                     betIsSet = false;
+                    dealIsOn = false;
                   
                 } 
                    
@@ -215,45 +263,62 @@ public class Game {
       }
         });
         Button doubleButton = new Button("Double");
+        doubleButton.setTranslateY(100);
+        doubleButton.setScaleX(1.5);
+        doubleButton.setScaleY(1.5);
         
         actionButtons.getChildren().add(hitButton);
         actionButtons.getChildren().add(stayButton);
         actionButtons.getChildren().add(doubleButton);
+        actionButtons.getChildren().add(setBet);
         actionButtons.getChildren().add(betInput);
+        actionButtons.getChildren().add(playAgain);
+        
 
  
         opponentHand.getChildren().add(new Label(aiFirstCard.getSuit() + " " + aiFirstCard.getValue()));
         opponentHand.getChildren().add(new Label(aiSecondCard.getSuit() + " " + aiSecondCard.getValue()));
+        opponentHand.setAlignment(Pos.TOP_RIGHT);
 
         playerHand.getChildren().add(new Label(playerFirstCard.getSuit() + " " + playerFirstCard.getValue()));
         playerHand.getChildren().add(new Label(playerSecondCard.getSuit() + " " + playerSecondCard.getValue()));
+        playerHand.setAlignment(Pos.TOP_LEFT);
+        playerHand.setTranslateY(-60);
+        
 
         handValues.getChildren().add(new Label("Player hand value: " + getHandValue(player)));
         handValues.getChildren().add(new Label("AI hand value: " + getHandValue(ai)));
+        handValues.setAlignment(Pos.TOP_CENTER);
         handValues.setSpacing(100);
+     
         TilePane board = new TilePane();
         board.getChildren().add(handValues);
         board.getChildren().add(opponentHand);
-        board.getChildren().add(playAgain);
-        board.getChildren().add(hitButton);
-        board.getChildren().add(stayButton);
         board.getChildren().add(playerHand);
         board.getChildren().add(showWinner);
-        board.getChildren().add(betInput);
-        board.getChildren().add(setBet);
-        
-        
-       
-        
+        board.setAlignment(Pos.CENTER);
+
         board.setMaxWidth(700);
-        board.setHgap(10);
-        board.setVgap(10);
+        board.setHgap(20);
+        board.setVgap(20);
+        actionButtons.setTranslateX(120);
+        actionButtons.setSpacing(35);
+        HBox betInfo = new HBox();
+        betInfo.getChildren().add(betAmount);
+        HBox winnerInfo = new HBox();
+        winnerInfo.getChildren().add(checkWinner);
+        winnerInfo.getChildren().add(playerAccountBalance);
+        winnerInfo.setTranslateY(50);
+        
+        StackPane fullGameBoard = new StackPane(betInfo,board,winnerInfo,actionButtons);
+        fullGameBoard.setPadding(new Insets(50, 50, 50, 50));
+        
         
 
 
 
         
-        Scene gameView = new Scene(board,700,700);
+        Scene gameView = new Scene(fullGameBoard,700,700);
         stage.setScene(gameView);
         
         final long startNanoTime = System.nanoTime();
@@ -278,13 +343,19 @@ public class Game {
             }
             
                 if (counter < 1) {
-                    newGame.checkBlackJack(currentBet);
+                    if(player.getHandValue() == 21 || ai.getHandValue() == 21) {
+                        newGame.checkBlackJack(currentBet,checkWinner);
+                        betIsSet = false;
+                        dealIsOn = false;
+                        return;            
+                    }
                     counter++;
-                    return;
+
                 }
             
             
             if(player.getLoser()) {
+                
                 
                 
             }

@@ -1,6 +1,6 @@
 
 
-package game.ui;
+package game.service;
 
 import game.cards.Card;
 import game.cards.Deck;
@@ -105,6 +105,9 @@ public class GameService {
     }
     
     public boolean setBet(TextField newBet, boolean betIsSet) {
+        if (newBet.getText().isEmpty() || newBet.getText() == null) {
+            return false;
+        }
         
         try {
             this.bet = Double.parseDouble(newBet.getText());
@@ -131,10 +134,11 @@ public class GameService {
  * Metodi tarkistaa onko jompi kumpi pelaaja saanut black jackin.
  *
  * @param   bet   Käyttäjän antama panos mikä kerrotaan black jack kertoimella
+ * @param   winner Voittajan tiedot tallennetaan tähän
  *
  * 
  */
-    public void checkBlackJack(double bet) {
+    public void checkBlackJack(double bet, Label winner) {
         
 
         double blackJackMultiple = 1.5;
@@ -143,17 +147,20 @@ public class GameService {
             System.out.println("Both have BLACK JACK. DRAW! Bet is returned");
             player.setWinner();
             player.setBalance(bet);
+            winner.setText("DRAW, BOTH HAVE BLACK JACK! You win: " + Double.toString(bet) + "€");
             saveStats();
         } else if (ai.getHandValue() == 21) {
             System.out.println("AI got BLACK JACK. Ai won!");
             player.setLoser();
             player.setBalance(-bet);
+            winner.setText("AI GOT BLACK JACK: You lose: " + Double.toString(bet) + "€");
             saveStats();
         } else if (player.getHandValue() == 21) {
             amount = blackJackMultiple * bet;
             System.out.println("Player got BLACK JACK! Player won!");
             player.setWinner();
             player.setBalance(amount);
+            winner.setText("YOU GOT BLACK JACK: You win: " + Double.toString(amount) + "€");
             saveStats();
         }
         System.out.println("Player balance  " + player.getAccountBalance());
@@ -165,40 +172,46 @@ public class GameService {
  * Metodi tarkistaa pelin voittajan.
  *
  * @param   bet   Käyttäjän antama panos mikä kerrotaan normikertoimella
+ * @param   winner Voittajan tiedot tallennetaan tähän
  *
  * 
  */
-    public void checkWinner(double bet) {
+    public void checkWinner(double bet, Label winner) {
         System.out.println("Checking winner:");
         if (ai.getHandValue() <= 21 && player.getHandValue() <= 21) {
             if (ai.getHandValue() == player.getHandValue()) {
                 System.out.println("DRAW so AI wins!");
                 player.setLoser();
                 player.setBalance(-bet);
+                winner.setText("DRAW! You lose: " + Double.toString(bet) + "€");
                 saveStats();
             } else if (ai.getHandValue() > player.getHandValue()) {
                 System.out.println("AI WON!");
                 player.setLoser();
                 System.out.println("current bet " + bet);
                 player.setBalance((bet * -1));
+                winner.setText("AI WON! You lose: " + Double.toString(bet) + "€");
                 saveStats();
             } else {
                 System.out.println("PLAYER WON");
                 player.setWinner();
                 player.setBalance(bet);
                 System.out.println("Player balance is " + this.player.getAccountBalance());
+                winner.setText("PLAYER WON! You win: " + Double.toString(bet) + "€");
                 saveStats();
             }    
         } else if (ai.getHandValue() >= 21) {
             System.out.println("PLAYER WON!");
             player.setWinner();
             player.setBalance(bet);
+            winner.setText("PLAYER WON! You win: " + Double.toString(bet) + "€");
             System.out.println("Player balance is " + this.player.getAccountBalance());
             saveStats();
         } else if (player.getHandValue() > 21) {
                 System.out.println("AI WON!");
                 player.setLoser();
                 player.setBalance(-bet);
+                winner.setText("AI WON! You lose: " + Double.toString(bet) + "€");
                 saveStats();
             
         }
