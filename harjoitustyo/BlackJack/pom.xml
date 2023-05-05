@@ -56,7 +56,7 @@
                     <configuration>
                         <transformers>
                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <mainClass>BlackJack.ui.Main</mainClass>
+                                <mainClass>game.main.Main</mainClass>
                             </transformer>
                         </transformers>
                     </configuration>
@@ -108,7 +108,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>BlackJack.ui.Main</mainClass>
+                    <mainClass>game.main.Main</mainClass>
                 </configuration>
                 <executions>
                     <execution>

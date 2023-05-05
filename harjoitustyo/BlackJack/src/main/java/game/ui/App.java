@@ -1,5 +1,8 @@
-package BlackJack.ui;
-import blackjack.ui.Game;
+package game.ui;
+
+
+import game.ui.Game;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,9 +23,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        System.out.println("Eka");
-        Game game = new Game(stage);
-        game.startGame();
+          Game game = new Game(stage);
+        //Game game = new Game(stage);
+         game.startGame();
     }
 
     public static void main(String[] args) {

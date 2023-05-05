@@ -1,7 +1,7 @@
 package testing;
 
-import BlackJack.cards.Card;
-import BlackJack.cards.Hand;
+import game.cards.Card;
+import game.cards.Hand;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -1,8 +1,8 @@
 
-package blackjack.ui;
-import BlackJack.ui.GameService;
-import BlackJack.cards.Card;
-import BlackJack.cards.Player;
+package game.ui;
+import game.ui.GameService;
+import game.cards.Card;
+import game.player.Player;
 import java.io.File;  
 import java.io.FileWriter;
 import java.io.IOException;   

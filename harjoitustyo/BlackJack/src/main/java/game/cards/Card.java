@@ -1,5 +1,5 @@
 
-package BlackJack.cards;
+package game.cards;
 
 /**
  * Luokka huolehtii korteista ja pitää huolen, että pelitilanteessa korttien arvot ovat oikein
