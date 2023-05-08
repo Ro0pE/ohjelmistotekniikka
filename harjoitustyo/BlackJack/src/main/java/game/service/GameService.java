@@ -139,8 +139,7 @@ public class GameService {
  * 
  */
     public void checkBlackJack(double bet, Label winner) {
-        
-
+       
         double blackJackMultiple = 1.5;
         double amount;
         if (ai.getHandValue() == 21 && player.getHandValue() == 21) {
@@ -197,14 +196,14 @@ public class GameService {
                 player.setWinner();
                 player.setBalance(bet);
                 System.out.println("Player balance is " + this.player.getAccountBalance());
-                winner.setText("PLAYER WON! You win: " + Double.toString(bet) + "€");
+                winner.setText("PLAYER WON! You win: " + Double.toString(bet * 2) + "€");
                 saveStats();
             }    
         } else if (ai.getHandValue() >= 21) {
             System.out.println("PLAYER WON!");
             player.setWinner();
             player.setBalance(bet);
-            winner.setText("PLAYER WON! You win: " + Double.toString(bet) + "€");
+            winner.setText("PLAYER WON! You win: " + Double.toString(bet * 2) + "€");
             System.out.println("Player balance is " + this.player.getAccountBalance());
             saveStats();
         } else if (player.getHandValue() > 21) {

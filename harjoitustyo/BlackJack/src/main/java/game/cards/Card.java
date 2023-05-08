@@ -20,25 +20,25 @@ public class Card {
         switch (this.value) {
             case 11:
                 
-                this.value = 10;
-                break;
+                return this.suit;
+                
             case 12:
                 
-                this.value = 10;
-                break;
+                return this.suit;
+                
             case 13:
                 
-                this.value = 10;
-                break;
+                return this.suit;
+                
             case 14:
                
-                this.value = 11;
-                break;
+                return this.suit;
+                
             default:
                 break;
         }
         
-        return this.suit + " " + this.value;
+        return this.suit + this.value;
     }
     
     public int getValue() {

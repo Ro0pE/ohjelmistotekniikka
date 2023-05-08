@@ -3,6 +3,7 @@ package game.service;
 
 import game.ui.GameUi;
 import game.ui.GameUi;
+import java.io.FileNotFoundException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ public class App extends Application {
     
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws FileNotFoundException {
           GameUi game = new GameUi(stage);
         //Game game = new Game(stage);
          game.startGame();
