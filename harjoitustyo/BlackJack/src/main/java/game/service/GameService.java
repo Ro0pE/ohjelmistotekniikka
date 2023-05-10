@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
  /**
  * Luokka huolehtii pelin käyttöliittymästä ja tarjoaa useita metodeja pelin toiminnaliisuuden takaamiseksi ja tiedostojen tallentamiseen.
  */
@@ -21,6 +22,8 @@ public class GameService {
     public double bet;
     public File stats;
     public double oldStats; 
+    public Label cardsValueOverText;
+    public Label winnerText;
     
 
     
@@ -28,9 +31,25 @@ public class GameService {
         this.deck = new Deck();
         this.ai = ai;
         this.player = player;
+        this.cardsValueOverText = new Label("OVER!");
+        this.winnerText = new Label("WINNER!");
 
         oldStats = 0;
        
+        
+    }
+    public void setUpResultTexts(){
+        cardsValueOverText.setTranslateX(50);
+        cardsValueOverText.setTranslateY(50);
+        cardsValueOverText.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 22px;");
+        cardsValueOverText.setMinWidth(150);
+        cardsValueOverText.setMinHeight(20);
+        
+        winnerText.setTranslateX(50);
+        winnerText.setTranslateY(50);
+        winnerText.setStyle("-fx-background-color: #80FF66; -fx-text-fill: black; -fx-font-size: 22px;");
+        winnerText.setMinWidth(150);
+        winnerText.setMinHeight(20);
         
     }
     public void startGame() {
@@ -138,28 +157,35 @@ public class GameService {
  *
  * 
  */
-    public void checkBlackJack(double bet, Label winner) {
-       
+    public void checkBlackJack(double bet, Label winner, Pane opponentHand, Pane playerHand) {
+        setUpResultTexts();
         double blackJackMultiple = 1.5;
         double amount;
         if (ai.getHandValue() == 21 && player.getHandValue() == 21) {
             System.out.println("Both have BLACK JACK. DRAW! Bet is returned");
             player.setWinner();
             player.setBalance(bet);
-            winner.setText("DRAW, BOTH HAVE BLACK JACK! You win: " + Double.toString(bet) + "€");
+            winner.setText("BET RETURNED : " + Double.toString(bet) + "€");
+            winnerText.setText("BOTH HAVE BLACK JACK, DRAW!");
+            playerHand.getChildren().add(winnerText);
+            opponentHand.getChildren().add(winnerText);
             saveStats();
         } else if (ai.getHandValue() == 21) {
             System.out.println("AI got BLACK JACK. Ai won!");
             player.setLoser();
             player.setBalance(-bet);
-            winner.setText("AI GOT BLACK JACK: You lose: " + Double.toString(bet) + "€");
+            winnerText.setText("YOU LOST " + Double.toString(bet) + "€");
+            winnerText.setText("BLACK JACK! AI WON!");
+            opponentHand.getChildren().add(winnerText);
             saveStats();
         } else if (player.getHandValue() == 21) {
             amount = blackJackMultiple * bet;
             System.out.println("Player got BLACK JACK! Player won!");
             player.setWinner();
             player.setBalance(amount);
-            winner.setText("YOU GOT BLACK JACK: You win: " + Double.toString(amount) + "€");
+            winner.setText("YOU WON " + Double.toString(amount) + "€");
+            winnerText.setText("BLACK JACK! YOU WON!");
+            playerHand.getChildren().add(winnerText);
             saveStats();
         }
         System.out.println("Player balance  " + player.getAccountBalance());
@@ -172,45 +198,55 @@ public class GameService {
  *
  * @param   bet   Käyttäjän antama panos mikä kerrotaan normikertoimella
  * @param   winner Voittajan tiedot tallennetaan tähän
+ * @param   opponentHand Vastustajan käsi, johon lisätään voitto/häviö label
+ * @param   playerHand  Pelaajan käsi, johon lisätään voitto/häviö label
  *
  * 
  */
-    public void checkWinner(double bet, Label winner) {
+    public void checkWinner(double bet, Label winner, Pane opponentHand, Pane playerHand) {
+        setUpResultTexts();
         System.out.println("Checking winner:");
         if (ai.getHandValue() <= 21 && player.getHandValue() <= 21) {
             if (ai.getHandValue() == player.getHandValue()) {
                 System.out.println("DRAW so AI wins!");
                 player.setLoser();
                 player.setBalance(-bet);
-                winner.setText("DRAW! You lose: " + Double.toString(bet) + "€");
+                winner.setText("DRAW,YOU LOST " + Double.toString(bet) + "€");
+                opponentHand.getChildren().add(winnerText);
                 saveStats();
             } else if (ai.getHandValue() > player.getHandValue()) {
                 System.out.println("AI WON!");
                 player.setLoser();
                 System.out.println("current bet " + bet);
                 player.setBalance((bet * -1));
-                winner.setText("AI WON! You lose: " + Double.toString(bet) + "€");
+                winner.setText("YOU LOST " + Double.toString(bet) + "€");
+                opponentHand.getChildren().add(winnerText);
                 saveStats();
             } else {
                 System.out.println("PLAYER WON");
                 player.setWinner();
                 player.setBalance(bet);
                 System.out.println("Player balance is " + this.player.getAccountBalance());
-                winner.setText("PLAYER WON! You win: " + Double.toString(bet * 2) + "€");
+                winner.setText("PLAYER WON " + Double.toString(bet * 2) + "€");
+                playerHand.getChildren().add(winnerText);
                 saveStats();
             }    
         } else if (ai.getHandValue() >= 21) {
             System.out.println("PLAYER WON!");
             player.setWinner();
             player.setBalance(bet);
-            winner.setText("PLAYER WON! You win: " + Double.toString(bet * 2) + "€");
+            winner.setText("PLAYER WON " + Double.toString(bet * 2) + "€");
             System.out.println("Player balance is " + this.player.getAccountBalance());
+            opponentHand.getChildren().add(cardsValueOverText);
+            playerHand.getChildren().add(winnerText);
             saveStats();
         } else if (player.getHandValue() > 21) {
                 System.out.println("AI WON!");
                 player.setLoser();
                 player.setBalance(-bet);
-                winner.setText("AI WON! You lose: " + Double.toString(bet) + "€");
+                winner.setText("YOU LOST " + Double.toString(bet) + "€");
+                playerHand.getChildren().add(cardsValueOverText);
+                opponentHand.getChildren().add(winnerText);
                 saveStats();
             
         }
