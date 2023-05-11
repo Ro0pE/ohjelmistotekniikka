@@ -66,6 +66,7 @@ public class GameUi {
     HashMap<String,Image> cardImageMap;
     int playerUiCounter;
     int aiUiCounter;
+    Node hideFirst;
  
     
     
@@ -82,8 +83,8 @@ public class GameUi {
         bet = 0;
         profit = 0;
         scanner = new Scanner(System.in);
-        player = new Player("Boris");
-        ai = new Player("AI");
+        player = new Player();
+        ai = new Player();
         gameIsOn = true;
         checkBalance = false;
         oldStats = 0;
@@ -100,6 +101,7 @@ public class GameUi {
         testImage = new ImageView();
         playerUiCounter = 2;
         aiUiCounter = 2;
+        hideFirst = new ImageView();
         
     }
     public String getHandValue(Player player) {
@@ -114,7 +116,9 @@ public class GameUi {
         CardGraphics cardGraphics = new CardGraphics();
         cardImageMap = cardGraphics.setupCardGraphics();
     }
+    
     public void startOptionsUI() {
+        
         Label gameName = new Label("BLÄCK JÄCK!");
         Button newGame = new Button("Play");
         newGame.setMinWidth(250);
@@ -155,6 +159,19 @@ public class GameUi {
         quitGame.setTranslateX(30);
         quitGame.setTranslateY(30);
         quitGame.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 30px; -fx-border-color: #838383;");
+        
+        highScores.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               HBox high = new HBox();
+               high.getChildren().add(new Label("HIGH SCORES"));
+               Scene highSoreScene = new Scene(high,900,700);
+               stage.setScene(highSoreScene);
+              
+               
+               
+            }
+        });
 
         VBox optionsSetup = new VBox(25);
         optionsSetup.setMinSize(310, 410);
@@ -178,19 +195,33 @@ public class GameUi {
         setUpImages();
         GameService newGame = new GameService(ai, player);
         newGame.startGame();
-        newGame.createStatsFile();
-        playerAccountBalance.setText("Account balance: " + Double.toString(newGame.getStats() - currentBet));
-        
+        //newGame.createStatsFile();
+        newGame.database();
         if (firstRound) {
-            player.setBalance(newGame.getStats());
+            player.setBalance(newGame.database.getAccountBalanceFromFile());
         }
+        playerAccountBalance.setText("Account balance: " + Double.toString(player.getAccountBalance() - currentBet));
+        
+
         
         System.out.println("player balance " + player.getAccountBalance());
         
         Card aiFirstCard = newGame.dealAI();
         Card aiSecondCard = newGame.dealAI();
+        if (!(aiFirstCard.getValue() + aiSecondCard.getValue() == 21)) {
+            System.out.println("removing " + aiFirstCard.getValue());
+            System.out.println("ai hadn " + ai.getHandValue());
+            ai.removeValueFromHand(aiFirstCard.getValue()); 
+            
+            System.out.println("vakuutus??");
+        }
         Card playerFirstCard = newGame.dealPlayer();
         Card playerSecondCard = newGame.dealPlayer();
+        
+        Button goBack = new Button();
+        goBack.setOnAction((event) -> {
+           startOptionsUI(); 
+        });
         
         
         TextField betInput = new TextField();
@@ -261,6 +292,8 @@ public class GameUi {
                playerUiCounter++;
 
                if (player.getHandValue() > 21) {
+                   ai.addValueBackToHand(aiFirstCard.getValue());
+                   hideFirst.setVisible(false);
                    newGame.checkWinner(currentBet,checkWinner, opponentHand, playerHand);
                    betIsSet = false;
                    dealIsOn = false;
@@ -283,9 +316,11 @@ public class GameUi {
            @Override
            public void handle(ActionEvent event) {
                if (betIsSet && dealIsOn) {
+                   ai.addValueBackToHand(aiFirstCard.getValue());
                    
               
                if (player.getHandValue() < 22 && ai.getHandValue() >= 17) {
+                   hideFirst.setVisible(false);
                    newGame.checkWinner(currentBet,checkWinner, opponentHand, playerHand);
                    betIsSet = false;
                    dealIsOn = false;
@@ -295,12 +330,14 @@ public class GameUi {
                } else {
                                 
                while (ai.getHandValue() < 17) {
+                hideFirst.setVisible(false);
                 Card newCard = newGame.dealAI();
                 Node aiHit = new ImageView(cardImageMap.get(newCard.showCard()));   
                 aiHit.setTranslateX(30 * aiUiCounter);
                 opponentHand.getChildren().add(aiHit);
                 aiUiCounter++;
                 if (ai.getHandValue() > 21) {
+                    hideFirst.setVisible(false);
                     newGame.checkWinner(currentBet,checkWinner, opponentHand, playerHand);
                     betIsSet = false;
                     dealIsOn = false;
@@ -308,6 +345,7 @@ public class GameUi {
                     aiUiCounter = 2;
                     playerAccountBalance.setText("Account balance: " +Double.toString(player.getAccountBalance()));
                 } else if (ai.getHandValue() < 22 && ai.getHandValue() > 16) {
+                    hideFirst.setVisible(false);
                     newGame.checkWinner(currentBet,checkWinner, opponentHand, playerHand); 
                     betIsSet = false;
                     dealIsOn = false;
@@ -334,11 +372,12 @@ public class GameUi {
         actionButtons.getChildren().add(setBet);
         actionButtons.getChildren().add(betInput);
         actionButtons.getChildren().add(dealButton);
-
+        hideFirst = new ImageView(cardImageMap.get("card back"));
         Node aiFirst = new ImageView(cardImageMap.get(aiFirstCard.showCard()));
         Node aiSecond = new ImageView(cardImageMap.get(aiSecondCard.showCard()));
         aiSecond.setTranslateX(30);
         opponentHand.getChildren().add(aiFirst);
+        opponentHand.getChildren().add(hideFirst);
         opponentHand.getChildren().add(aiSecond);
         opponentHand.setTranslateX(350);
  
@@ -385,6 +424,10 @@ public class GameUi {
         Pane info = new Pane();
         info.getChildren().add(betAmount);
         info.getChildren().add(playerAccountBalance);
+        info.getChildren().add(goBack);
+        goBack.setTranslateX(670);
+        goBack.setTranslateY(-50);
+        goBack.setText("<- Options");
         betAmount.setScaleY(2);
         betAmount.setScaleX(2);
         playerAccountBalance.setTranslateY(30);
@@ -443,9 +486,11 @@ public class GameUi {
    
                         return;            
                     }
+    
                     counter++;
 
                 }
+                 
             
             
             if(player.getLoser()) {

@@ -67,45 +67,11 @@ public class CardGraphics {
         FileInputStream getHeartsA = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ (temp + value) +".png");
         Image HeartsA = new Image(getHeartsA); 
         graphics.put(temp + value, HeartsA);
-      /*  FileInputStream getHearts2 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 2.png");
-        Image Hearts2 = new Image(getHearts2);
-        graphics.put(temp +" 2", Hearts2);
-        FileInputStream getHearts3 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 3.png");
-        Image Hearts3 = new Image(getHearts3);
-        graphics.put(temp +" 3", Hearts3);
-        FileInputStream getHearts4 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 4.png");
-        Image Hearts4 = new Image(getHearts4);
-        graphics.put(temp +" 4", Hearts4);
-        FileInputStream getHearts5 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 5.png");
-        Image Hearts5 = new Image(getHearts5);
-        graphics.put(temp +" 5", Hearts5);
-        FileInputStream getHearts6 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 6.png");
-        Image Hearts6 = new Image(getHearts6);
-        graphics.put(temp +" 6", Hearts6);
-        FileInputStream getHearts7 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 7.png");
-        Image Hearts7 = new Image(getHearts7);
-        graphics.put(temp +" 7", Hearts7);
-        FileInputStream getHearts8 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 8.png");
-        Image Hearts8 = new Image(getHearts8);
-        graphics.put(temp +" 8", Hearts8);
-        FileInputStream getHearts9 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 9.png");
-        Image Hearts9 = new Image(getHearts9);
-        graphics.put(temp +" 9", Hearts9);
-        FileInputStream getHearts10 = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " 10.png");
-        Image Hearts10 = new Image(getHearts10);
-        graphics.put(temp +" 10", Hearts10);
-        FileInputStream getHeartsJ = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " .png");
-        Image HeartsJ = new Image(getHeartsJ);
-        graphics.put(temp +" J", HeartsJ);
-        FileInputStream getHeartsQ = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " Q.png");
-        Image HeartsQ = new Image(getHeartsQ);
-        graphics.put(temp +" Q", HeartsQ);
-        FileInputStream getHeartsK = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ temp + " K.png");
-        Image HeartsK = new Image(getHeartsK);
-        graphics.put(temp +" K", HeartsK);
-            */
         }
         }
+        FileInputStream getCardBack = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\cardback.png");
+        Image cardBack = new Image(getCardBack);
+        graphics.put("card back", cardBack);
 
         
         return this.graphics;

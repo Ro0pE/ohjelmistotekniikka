@@ -22,10 +22,10 @@ public class Player {
     boolean gotAce;
     
     
-    public Player(String name) {
+    public Player() {
         this.hand = new Hand();
         this.handValue = 0;
-        this.name = name;
+        this.name = "";
         this.accountBalance = 0;
         this.winner = false;
         this.loser = false;
@@ -35,6 +35,9 @@ public class Player {
     
     public String getName() {
         return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public double getAccountBalance() {
         return this.accountBalance;
@@ -84,6 +87,12 @@ public class Player {
             this.gotAce = false;
         }
         
+    }
+    public void removeValueFromHand(int value) {
+        this.handValue = this.handValue - value;   
+    }
+    public void addValueBackToHand(int value) {
+        this.handValue = this.handValue + value;
     }
     public int getHandValue() {
         return this.handValue;

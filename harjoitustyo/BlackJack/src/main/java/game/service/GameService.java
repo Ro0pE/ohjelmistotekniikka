@@ -4,6 +4,7 @@ package game.service;
 
 import game.cards.Card;
 import game.cards.Deck;
+import game.database.Database;
 import game.player.Player;
 import java.io.File;
 import java.io.FileWriter;
@@ -24,6 +25,7 @@ public class GameService {
     public double oldStats; 
     public Label cardsValueOverText;
     public Label winnerText;
+    public Database database;
     
 
     
@@ -33,7 +35,7 @@ public class GameService {
         this.player = player;
         this.cardsValueOverText = new Label("OVER!");
         this.winnerText = new Label("WINNER!");
-
+        this.database = new Database();
         oldStats = 0;
        
         
@@ -57,55 +59,16 @@ public class GameService {
         
         
     }
-        public void createStatsFile(){
-        try {
-          stats = new File("stats.txt");
-        if (stats.createNewFile()) {
-          System.out.println("File created: " + stats.getName());
-          FileWriter saveFiles = new FileWriter("stats.txt");
-          saveFiles.write("100");
-          saveFiles.close();
-        } else {
-          System.out.println("File already exists.");
-        }
-      } catch (IOException e) {
-        System.out.println("An error occurred.");
-        
+    
+    public void database() {
+        database.createAccountBalanceFile();
+        database.createHighScoresFile();
     }
-    }
-    public double getStats() {
-            try {
-            File statsFile = new File("stats.txt");
-            Scanner myReader = new Scanner(statsFile);
-            while (myReader.hasNextLine()) {
-              String data = myReader.nextLine();
-              oldStats = Double.parseDouble(data);
-               System.out.println("old stats:" + oldStats);
-            }
-            myReader.close();
-          } catch (IOException e) {
-            System.out.println("An error occurred.!!!!!!");
-            
-          }
-            return oldStats;
-  }
+
+
     
         
-    public void saveStats() {
-    try {
-      FileWriter saveFiles = new FileWriter("stats.txt");
-      double newBalance = getStats();
-       
-      newBalance =+ player.getAccountBalance();
-      System.out.println("toimiikos balanze "  + newBalance);
-      saveFiles.write(Integer.toString((int) player.getAccountBalance()));
-      saveFiles.close();
-      System.out.println("Successfully wrote to the file.");
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      
-    }
-  }
+
     public Card dealPlayer() {
         Card randomCard = this.deck.getRandomCard();
         this.player.hand.addCardsToHand(randomCard);
@@ -130,6 +93,7 @@ public class GameService {
         
         try {
             this.bet = Double.parseDouble(newBet.getText());
+            System.out.println("bet size " + this.bet);
             betIsSet = true;
 
             
@@ -169,7 +133,8 @@ public class GameService {
             winnerText.setText("BOTH HAVE BLACK JACK, DRAW!");
             playerHand.getChildren().add(winnerText);
             opponentHand.getChildren().add(winnerText);
-            saveStats();
+            database.saveStats(player);
+            
         } else if (ai.getHandValue() == 21) {
             System.out.println("AI got BLACK JACK. Ai won!");
             player.setLoser();
@@ -177,7 +142,8 @@ public class GameService {
             winnerText.setText("YOU LOST " + Double.toString(bet) + "€");
             winnerText.setText("BLACK JACK! AI WON!");
             opponentHand.getChildren().add(winnerText);
-            saveStats();
+            database.saveStats(player);
+   
         } else if (player.getHandValue() == 21) {
             amount = blackJackMultiple * bet;
             System.out.println("Player got BLACK JACK! Player won!");
@@ -186,7 +152,8 @@ public class GameService {
             winner.setText("YOU WON " + Double.toString(amount) + "€");
             winnerText.setText("BLACK JACK! YOU WON!");
             playerHand.getChildren().add(winnerText);
-            saveStats();
+            database.saveStats(player);
+         
         }
         System.out.println("Player balance  " + player.getAccountBalance());
         
@@ -213,7 +180,8 @@ public class GameService {
                 player.setBalance(-bet);
                 winner.setText("DRAW,YOU LOST " + Double.toString(bet) + "€");
                 opponentHand.getChildren().add(winnerText);
-                saveStats();
+                database.saveStats(player);
+                
             } else if (ai.getHandValue() > player.getHandValue()) {
                 System.out.println("AI WON!");
                 player.setLoser();
@@ -221,7 +189,8 @@ public class GameService {
                 player.setBalance((bet * -1));
                 winner.setText("YOU LOST " + Double.toString(bet) + "€");
                 opponentHand.getChildren().add(winnerText);
-                saveStats();
+                database.saveStats(player);
+                
             } else {
                 System.out.println("PLAYER WON");
                 player.setWinner();
@@ -229,7 +198,8 @@ public class GameService {
                 System.out.println("Player balance is " + this.player.getAccountBalance());
                 winner.setText("PLAYER WON " + Double.toString(bet * 2) + "€");
                 playerHand.getChildren().add(winnerText);
-                saveStats();
+                database.saveStats(player);
+                
             }    
         } else if (ai.getHandValue() >= 21) {
             System.out.println("PLAYER WON!");
@@ -239,7 +209,8 @@ public class GameService {
             System.out.println("Player balance is " + this.player.getAccountBalance());
             opponentHand.getChildren().add(cardsValueOverText);
             playerHand.getChildren().add(winnerText);
-            saveStats();
+            database.saveStats(player);
+            
         } else if (player.getHandValue() > 21) {
                 System.out.println("AI WON!");
                 player.setLoser();
@@ -247,7 +218,8 @@ public class GameService {
                 winner.setText("YOU LOST " + Double.toString(bet) + "€");
                 playerHand.getChildren().add(cardsValueOverText);
                 opponentHand.getChildren().add(winnerText);
-                saveStats();
+                database.saveStats(player);
+                
             
         }
         System.out.println("Player balance  " + player.getAccountBalance());

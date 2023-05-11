@@ -42,7 +42,14 @@ public class Card {
     }
     
     public int getValue() {
-        return this.value;
+        if (this.value == 14) {
+            return 11;
+        } else if (this.value < 14 && this.value > 9) {
+            return 10;
+        } else {
+            return this.value;
+        }
+       
     }
     public String getSuit() {
         return this.suit;
