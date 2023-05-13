@@ -71,17 +71,7 @@ public class Player {
  *
  */
     public void setHandValue(Card card) {
-        int value = 0;
-        if (card.getValue() > 10 && card.getValue() < 14) {
-            value = 10;
-        } else if (card.getValue() == 14) {      
-            this.gotAce = true;
-            value = 11;
-
-        } else {
-            value = card.getValue();
-        }
-        this.handValue = this.handValue + value;
+        this.handValue += card.getValue();
         if (this.handValue > 21 && this.gotAce == true) { 
             this.handValue = this.handValue - 10;
             this.gotAce = false;

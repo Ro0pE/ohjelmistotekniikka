@@ -4,8 +4,10 @@
  */
 package game.cards;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import javafx.scene.image.Image;
@@ -49,27 +51,33 @@ public class CardGraphics {
             String value;
             switch (f) {
                 case 11:
-                    value = " J";
+                    value = "J";
                     break;
                 case 12:
-                    value = " Q";
+                    value = "Q";
                     break;
                 case 13:
-                    value = " K";
+                    value = "K";
                     break;
                 case 14:
-                    value = " A";
+                    value = "A";
                     break;
                 default:
-                    value = " " + String.valueOf(f);
+                    value = "" + String.valueOf(f);
                     break;
-            }    
-        FileInputStream getHeartsA = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\"+ (temp + value) +".png");
-        Image HeartsA = new Image(getHeartsA); 
-        graphics.put(temp + value, HeartsA);
+            }
+                System.out.println(temp + value +".png");
+         
+      
+       InputStream getCardFront = this.getClass().getClassLoader().getResourceAsStream(temp + value + ".png");
+       Image cardFront = new Image(getCardFront); 
+       graphics.put(temp + " " + value, cardFront);
         }
         }
-        FileInputStream getCardBack = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\cardback.png");
+        //ClassLoader classLoader2 = getClass().getClassLoader();
+       // File file = new File(classLoader2.getResource("cardback.png").getFile());
+       // InputStream getCardBack = new FileInputStream(file);
+        InputStream getCardBack = this.getClass().getClassLoader().getResourceAsStream("cardback.png");
         Image cardBack = new Image(getCardBack);
         graphics.put("card back", cardBack);
 

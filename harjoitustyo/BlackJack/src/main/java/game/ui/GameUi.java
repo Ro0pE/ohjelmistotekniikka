@@ -110,9 +110,6 @@ public class GameUi {
 
     
     public void setUpImages() throws FileNotFoundException {
-        FileInputStream inputstream = new FileInputStream("C:\\blackjack_backup\\harjoitustyo\\BlackJack\\images\\Hearts A.png");
-        Image image = new Image(inputstream); 
-        testImage.setImage(image);
         CardGraphics cardGraphics = new CardGraphics();
         cardImageMap = cardGraphics.setupCardGraphics();
     }
@@ -201,22 +198,16 @@ public class GameUi {
             player.setBalance(newGame.database.getAccountBalanceFromFile());
         }
         playerAccountBalance.setText("Account balance: " + Double.toString(player.getAccountBalance() - currentBet));
-        
 
-        
-        System.out.println("player balance " + player.getAccountBalance());
-        
-        Card aiFirstCard = newGame.dealAI();
-        Card aiSecondCard = newGame.dealAI();
-        if (!(aiFirstCard.getValue() + aiSecondCard.getValue() == 21)) {
-            System.out.println("removing " + aiFirstCard.getValue());
-            System.out.println("ai hadn " + ai.getHandValue());
-            ai.removeValueFromHand(aiFirstCard.getValue()); 
-            
-            System.out.println("vakuutus??");
-        }
         Card playerFirstCard = newGame.dealPlayer();
         Card playerSecondCard = newGame.dealPlayer();
+        Card aiFirstCard = newGame.dealAI();
+        Card aiSecondCard = newGame.dealAI();
+        if (aiFirstCard.getValue() + aiSecondCard.getValue() == 21) {  
+            System.out.println("vakuutus??");
+        }
+        System.out.println("player hand"  + player.getHandValue());
+        ai.removeValueFromHand(aiFirstCard.getValue()); 
         
         Button goBack = new Button();
         goBack.setOnAction((event) -> {
