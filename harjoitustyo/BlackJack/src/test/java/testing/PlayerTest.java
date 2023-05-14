@@ -21,13 +21,10 @@ public class PlayerTest {
     
     @Before
     public void setUp() {
-       player = new Player("Boris");
+       player = new Player();
     }
     
-    @Test
-    public void getNameReturnsCorrectName() {
-        assertEquals("Boris", player.getName());
-    }
+
     
     @Test
     public void getAccountBalanceReturnsCorrectBalance(){
@@ -43,7 +40,7 @@ public class PlayerTest {
     @Test
     public void handValueIsCorrect() {
         Card cardAce = new Card("Spades", 14);
-        player.setHandValue(cardAce);
+        player.setHandValuePlayer(cardAce,true);
         assertEquals(11, player.getHandValue());   
      
     }
@@ -53,9 +50,10 @@ public class PlayerTest {
         Card cardAce = new Card("Hearts", 14);
         Card card5 = new Card("Spades", 5);
         Card cardQueen = new Card("Diamonds", 12);
-        player.setHandValue(cardAce);
-        player.setHandValue(card5);
-        player.setHandValue(cardQueen);
+        player.gotAce = true;
+        player.setHandValuePlayer(cardAce, true);
+        player.setHandValuePlayer(card5, true);
+        player.setHandValuePlayer(cardQueen, true);
         assertEquals(16, player.getHandValue());
     }
 
