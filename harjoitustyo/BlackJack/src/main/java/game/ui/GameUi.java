@@ -272,12 +272,7 @@ public class GameUi {
                         Logger.getLogger(GameUi.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    errorLabel.setText("Please put your bet");
-                    errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 20px;");
-                    errorLabel.setTranslateX(350);
-                    errorLabel.setTranslateY(-34);
-                    errorLabel.setScaleX(1.5);
-                    errorLabel.setScaleY(1.5);
+   
 
                 }
             }
@@ -289,10 +284,17 @@ public class GameUi {
             public void handle(ActionEvent event) {
 
                 betIsSet = newGame.setBet(betInput, betIsSet);
-                if (!betInput.getText().isEmpty()) {
+                if (betIsSet) {
                     currentBet = Double.valueOf(betInput.getText());
                     betAmount.setText("Current bet: " + Double.toString(currentBet));
-
+                    errorLabel.setText("");
+                } else {
+                    errorLabel.setText("Invalid input");
+                    errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 20px;");
+                    errorLabel.setTranslateX(360);
+                    errorLabel.setTranslateY(-34);
+                    errorLabel.setScaleX(1.5);
+                    errorLabel.setScaleY(1.5);
                 }
             }
         });

@@ -29,12 +29,7 @@ public class Hand {
         hand.add(new Card(card.suit, card.value));
     }
 
-    public void showHand() {
-        for (int i = 0; i < hand.size(); i++) {
-            System.out.println(this.hand.get(i).showCard());
-        }
 
-    }
 
     public ArrayList<Card> getHand() {
         return this.hand;

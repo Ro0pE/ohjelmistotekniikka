@@ -56,10 +56,12 @@ public class Player {
      *
      * @param card Käyttäjän antama kortti
      * @param ace Tarkistaa onko pelaajalla ässä
+ 
      *
      */
     public void setHandValuePlayer(Card card, Boolean ace) {
         this.gotAce = ace;
+       
         this.handValue += card.getValue();
         if (this.handValue > 21 && this.gotAce == true && this.counterPlayer == 0) {
             this.counterPlayer = 1;
@@ -74,8 +76,9 @@ public class Player {
 
     public void setHandValueAI(Card card, Boolean ace) {
         this.gotAce = ace;
+
         this.handValue += card.getValue();
-        if (this.handValue > 21 && this.gotAce == true && this.counterAI == 0) {
+        if (this.handValue > 21 && this.gotAce == true && counterAI == 0) {
             this.counterAI = 1;
             this.handValue = this.handValue - 10;
 

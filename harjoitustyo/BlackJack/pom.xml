@@ -92,6 +92,10 @@
             <configuration>
          <excludes>
             <exclude>BlackJack/ui/*</exclude>
+            <exclude>BlackJack/ui/*</exclude>
+            <exclude>game/service/*</exclude>
+            <exclude>game/ui/*</exclude>
+            <exclude>game/cards/CardGraphics.class</exclude>
             </excludes>
             </configuration>
             <executions>

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -29,8 +30,12 @@ public class GameService {
     public Database database;
     public Boolean playerAce;
     public Boolean aiAce;
+    public int counterPlayer;
+    public int counterAI;
+    private Pattern pattern;
 
     public GameService(Player ai, Player player) {
+        this.pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         this.deck = new Deck();
         this.ai = ai;
         this.player = player;
@@ -40,7 +45,8 @@ public class GameService {
         oldStats = 0;
         this.playerAce = false;
         this.aiAce = false;
-
+        this.counterPlayer = 0;
+        this.counterAI = 0;
     }
 
     public void setUpResultTexts() {
@@ -92,27 +98,33 @@ public class GameService {
     }
 
     public boolean setBet(TextField newBet, boolean betIsSet) {
-        if (newBet.getText().isEmpty() || newBet.getText() == null) {
-            return false;
-        }
+        if (pattern.matcher(newBet.getText()).matches()) {
+            System.out.println("TEST");
+            try {
+                this.bet = Double.parseDouble(newBet.getText());
 
-        try {
-            this.bet = Double.parseDouble(newBet.getText());
+                betIsSet = true;
 
-            betIsSet = true;
+             if (player.getAccountBalance() < this.bet) {
 
-            if (player.getAccountBalance() < this.bet) {
-
-                return false;
-            } else {
-                return betIsSet;
-            }
+                    return false;
+                } else {
+                    return betIsSet;
+                }
 
         } catch (NumberFormatException e) {
 
             return false;
         }
 
+            
+        
+    } else {
+            return false;
+        }
+
+
+       
     }
 
     /**
