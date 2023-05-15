@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka 2023
 
-## Harjoitustyö::Black Jack
+## Harjoitustyö :: Bläck Jäck
 
 ### Dokumentaatio:
 
