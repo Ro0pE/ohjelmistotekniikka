@@ -1,6 +1,7 @@
 # Käyttöohje
 
-Lataa ohjelma [tästä](https://github.com/Ro0pE/ohjelmistotekniikka/releases/tag/Loppupalautus)
+Lataa ohjelma [tästä](https://github.com/Ro0pE/ohjelmistotekniikka/releases/tag/Loppupalautus) (BlackJack-1.0-SNAPSHOT.jar)
+)
 
 ## Ohjelman käynnistäminen
 
