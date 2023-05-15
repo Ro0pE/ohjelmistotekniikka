@@ -8,8 +8,12 @@
 |  23.4.23 | 5   | Testirivikattavuus +60%, käyttöliittymä poistettu testeistä. Graafinen ui aloitettu. Pakkausrakennetta kehitetty|
 |  25.4.23 | 4   | Ohjelman hajoittaminen, pakettien nimien ja rakenteen kanssa tappelua|
 |  2.5.23 | 5   | Alustava pelattava versio graafisella käyttöliittymällä tehty|
+|  8.5.23 | 3   | Graafisen käyttöliittymän viilausta ja refaktorointia|
+|  13.5.23 | 3   | Pelin testausta ja korjailua|
+|  14.5.23 | 4   | Testien korjailua ja tietokannan testaus lisätty|
+|  15.5.23 | 3   | Dokumentaation päivitystä ja loppuviilausta|
 
 
 
 
-Tunteja yhteensä: 27h
+Tunteja yhteensä: 40h
