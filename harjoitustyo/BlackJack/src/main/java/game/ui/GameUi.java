@@ -42,15 +42,8 @@ import javafx.stage.Stage;
  */
 public class GameUi {
 
-    Boolean gameIsOn;
     Player player;
     Player ai;
-    Scanner scanner;
-    int bet;
-    Boolean checkBalance;
-    int profit;
-    File stats;
-    double oldStats;
     Stage stage;
     Pane playerHand;
     Pane opponentHand;
@@ -65,18 +58,15 @@ public class GameUi {
     Label playerAccountBalance;
     Button stayButton;
     Boolean dealIsOn;
-    ImageView testImage;
     HashMap<String, Image> cardImageMap;
     int playerUiCounter;
     int aiUiCounter;
     Node hideFirst;
     Scene gameView;
     StackPane fullGameBoard;
-    Stage newStage;
     Scene startScene;
     Button cashOut;
     GameService newGame;
-    int input;
     Label errorLabel;
 
     public GameUi(Stage stage) throws FileNotFoundException {
@@ -86,30 +76,22 @@ public class GameUi {
         this.betIsSet = false;
         this.counter = 0;
         this.stage = stage;
-        bet = 0;
-        profit = 0;
-        scanner = new Scanner(System.in);
-        player = new Player();
-        ai = new Player();
-        gameIsOn = true;
-        checkBalance = false;
-        oldStats = 0;
-        playerHand = new Pane();
-        opponentHand = new Pane();
-        handValues = new HBox();
-        showWinner = new HBox();
+        this.player = new Player();
+        this.ai = new Player();
+        this.playerHand = new Pane();
+        this.opponentHand = new Pane();
+        this.handValues = new HBox();
+        this.showWinner = new HBox();
         this.currentBet = 0;
-        betAmount = new Label("Current bet: -");
-        checkWinner = new Label("");
-        playerAccountBalance = new Label("");
-        stayButton = new Button("Stay");
-        dealIsOn = false;
-        testImage = new ImageView();
-        playerUiCounter = 2;
-        aiUiCounter = 2;
-        firstRound = true;
-        hideFirst = new ImageView();
-        this.newStage = new Stage();
+        this.betAmount = new Label("Current bet: -");
+        this.checkWinner = new Label("");
+        this.playerAccountBalance = new Label("");
+        this.stayButton = new Button("Stay");
+        this.dealIsOn = false;
+        this.playerUiCounter = 2;
+        this.aiUiCounter = 2;
+        this.firstRound = true;
+        this.hideFirst = new ImageView();
 
     }
 
@@ -199,7 +181,7 @@ public class GameUi {
         VBox optionsSetup = new VBox(25);
         optionsSetup.setMinSize(320, 510);
         optionsSetup.setPrefSize(250, 250);
-        optionsSetup.getChildren().add(gameName);;
+        optionsSetup.getChildren().add(gameName);
         optionsSetup.getChildren().add(newGame);
         optionsSetup.getChildren().add(highScores);
         optionsSetup.getChildren().add(quitGame);
@@ -272,7 +254,12 @@ public class GameUi {
                         Logger.getLogger(GameUi.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-   
+                    errorLabel.setText("Set bet!");
+                    errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 20px;");
+                    errorLabel.setTranslateX(360);
+                    errorLabel.setTranslateY(-34);
+                    errorLabel.setScaleX(1.5);
+                    errorLabel.setScaleY(1.5);
 
                 }
             }
@@ -489,15 +476,11 @@ public class GameUi {
                     }
 
                     counter++;
-
                 }
-
             }
         }.start();
-
         stage.setResizable(false);
         stage.show();
-
     }
 
     public void startGame() {

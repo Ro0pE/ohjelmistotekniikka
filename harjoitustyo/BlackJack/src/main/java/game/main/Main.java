@@ -1,6 +1,6 @@
 package game.main;
 
-import game.service.App;
+
 import game.service.App;
 
 public class Main {

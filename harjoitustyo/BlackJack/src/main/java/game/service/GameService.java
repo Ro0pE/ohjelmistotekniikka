@@ -5,9 +5,6 @@ import game.cards.Deck;
 import game.database.Database;
 import game.player.Player;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -99,7 +96,6 @@ public class GameService {
 
     public boolean setBet(TextField newBet, boolean betIsSet) {
         if (pattern.matcher(newBet.getText()).matches()) {
-            System.out.println("TEST");
             try {
                 this.bet = Double.parseDouble(newBet.getText());
 
@@ -132,6 +128,8 @@ public class GameService {
      *
      * @param bet Käyttäjän antama panos mikä kerrotaan black jack kertoimella
      * @param winner Voittajan tiedot tallennetaan tähän
+     * @param opponentHand vastustajan käsi
+     * @param playerHand pelaajan käsi
      *
      *
      */

@@ -5,8 +5,6 @@
 package game.player;
 
 import game.cards.Card;
-import game.cards.Card;
-import game.cards.Hand;
 import game.cards.Hand;
 
 /**
