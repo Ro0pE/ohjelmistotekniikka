@@ -1,23 +1,27 @@
 # Käyttöohje
 
-Kloonaa projekti koneellesi:
-git@github.com:Ro0pE/ohjelmistotekniikka.git
+Lataa ohjelma [tästä](https://github.com/Ro0pE/ohjelmistotekniikka/releases/tag/Loppupalautus)
 
 ## Ohjelman käynnistäminen
 
 
-Avaa projektihakemisto "harjoitustyo/BlackJack" NetBeanssilla ja paina vihreää nuolta "Run project" tai paina F6
+Ohjelma käynnistyy komennolla 
 
-(.jar tiedoston kanssa vielä ongelmia)
+```
+java -jar BlackJack-1.0-SNAPSHOT.jar
+```
 
 
 ## Pelin pelaaminen
 
-- Paina alkuvalikosta New Game
-- Aseta panos. (Alussa rahaa on 100€), joten valitse summa 1-100 väliltä
-- Paina Set
-- Käynnistä peli painamalla Play
-- Ylhäällä näet pelaajien käsien arvon. Voit ottaa lisäkortin painamalla Hit tai pysymällä nykyisessä kädessä painamalla Stay.
+- Paina alkuvalikosta Play
+- Aseta panos. (Alussa rahaa on 55€), joten valitse summa väliltä 1-500
+- Paina Set bet
+- Käynnistä peli painamalla Deal
+- Pelaajille jaetaan kortit. Voit ottaa lisäkortin painamalla Hit tai pysymällä nykyisessä kädessä painamalla Stay.
 - Jos otit lisäkortin ja korttiesi summa on yli 22, hävisit. Jos korttien summa on alle 22, voit ottaa lisää.
 - Jos korttiesi summa on alle 22 ja painat stay, vastustaja ottaa lisää kortteja kunnes hänen kätensä arvo on > 16 
 - Lopuksi ohjelma laskee tuloksen. Jos häviät menetät panoksesi. Voittaessa panoksesi tuplaantuu ja se lisätään pelitilille.
+- Jos jommalla kummalla on aluksi black jack (kortti numero 10 tai kuvakortti JA ässä) niin hän voittaa. Pelaajan panos maksetaan 1.5 kertaisena.
+- Jos molemmilla on black jack niin panos palautuu pelaajalle.
+- Voit lopettaa pelaamisen painalla "cash out" - nappia, mistä pääsee alkuvalikkoon. "Quit game" nappi sammuttaa ohjelman
