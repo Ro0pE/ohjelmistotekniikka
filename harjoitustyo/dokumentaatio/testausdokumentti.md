@@ -15,3 +15,9 @@ Ohjelma on testattu manuaalisesti pelaamalla sitä lukuisia eri kertoja.
 ## Toiminnallisuus
 
 Syöttökenttiin on syötetty virheellisiä syötteitä, kuten tyhjiä ja ei-numeerisia arvoja.
+
+## Laatuongelmat
+
+-Sovelluslogiikan (Game.Service.java) testaus uupuu
+-Käyttöliittymän ulkoasu on vain osittain valmis
+-Pelaajan highscore-pisteet eivät talletu tiedostoon
