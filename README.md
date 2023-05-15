@@ -8,9 +8,17 @@
 
 [Changelog](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/changelog.md)
 
+[Testausdokumentti](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/testausdokumentti.md)
+
+[Vaatimusmäärittely](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
+
+[Käyttöohje](https://github.com/Ro0pE/ohjelmistotekniikka/blob/master/harjoitustyo/dokumentaatio/kayttoohje.md)
+
 ### Releaset
 
 [Viikko 5](https://github.com/Ro0pE/ohjelmistotekniikka/releases/tag/viikko5)
+
+[Loppupalautus](https://github.com/Ro0pE/ohjelmistotekniikka/releases/tag/Loppupalautus)
 
 ## Komentorivitoiminnot
 
@@ -53,5 +61,13 @@ Komennon jälkeen hakemistosta _target_ löytyy jar-tiedosto _BlackJack-1.0-SNAP
  ```
 
  Checkstyle virheet löytyvät selaimella: _target/site/checkstyle.html_
+ 
+### JavaDoc
+
+Komento:
+
+mvn javadoc:javadoc
+
+JavaDocia voi tutkia selaimella avaamalla tiedoston target/site/apidocs/index.html
  
  
