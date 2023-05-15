@@ -21,9 +21,11 @@ Pelillä on vain yksi käyttäjä, pelaaja itse.
 
 
 ## Pelin toiminnallisuus
-- Peli alkaa, kun pelaaja painaa start game - nappia - **tehty**
+
+- Peli alkaa, kun pelaaja painaa play-nappia - **tehty**
 - Pelaaja asettaa panoksen, minkä pitää olla < kuin pelitilin saldo - **tehty**
 - Peli alkaa ja pelaajille (käyttäjä ja tietokone) jaetaan kortit - **tehty**
+- Tarkistetaan mahdollinen "Black jack" - **tehty**
 - Korttien summat ilmoitetaan pelaajille, tietokoneen korteista vain toisen kortin luku ilmoitetaan - **tehty**
 - Pelaaja voi painaa nappia Hit, jolloin hän saa yhden kortin lisää - **tehty**
 - Pelaajan korttien yhteisumma ilmoitetaan. Mikäli summa on > 21, pelaaja häviää ja peli loppuu - **tehty**
@@ -36,11 +38,15 @@ Pelillä on vain yksi käyttäjä, pelaaja itse.
 
 
 ## Jatkokehitys
-- Double-toiminnon lisäys - **tehty*
-- Split-toiminnon lisäys
-- Statsien tallennus tiedostoon / lukeminen tiedostosta **tehty, refaktoroitava rankasti**
-- Tekstikäyttöliittymän korvaaminen graafisella käytttöliittymällä ~~**Alustava UI rakennettu**~~ **Pelattava GUI rakennettu**
-- Testaus - **kesken** **60%**
+
+- Statsien tallennus tiedostoon / lukeminen tiedostosta **tehty**
+- Tekstikäyttöliittymän korvaaminen graafisella käytttöliittymällä  **tehty**
+- Testaus - **tehty ~90%**
+- Double-toiminnon lisäys - **jäi kesken**
+- Split-toiminnon lisäys - **ei tehty**
+- Vakuutus-toiminto (jos on vaara, että vastustajalla on black jack) - **ei tehty**
+- UI:n graafisen ilmeen piristys - **ei tehty**
+- Huippupisteiden tallennus ja lukeminen -- **jäi kesken**
 
 
 
