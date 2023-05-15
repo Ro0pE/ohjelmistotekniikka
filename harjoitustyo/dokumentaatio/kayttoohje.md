@@ -10,7 +10,21 @@ Ohjelma käynnistyy komennolla
 ```
 java -jar BlackJack-1.0-SNAPSHOT.jar
 ```
+## Konfigurointi
 
+Ohjelman käynnistyessä ensimmäisen kerran se luo kaksi tekstitiedostoa:
+
+Pelaajan rahavarat:
+
+```
+accountBalance.txt
+```
+
+Huipputulokset:
+
+```
+highScoresFile.txt
+```
 
 ## Pelin pelaaminen
 
