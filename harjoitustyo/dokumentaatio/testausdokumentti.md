@@ -18,7 +18,7 @@ Syöttökenttiin on syötetty virheellisiä syötteitä, kuten tyhjiä ja ei-num
 
 ## Laatuongelmat
 
--Sovelluslogiikan (Game.Service.java) testaus uupuu
+-Sovelluslogiikan (GameService.java) testaus uupuu
 
 -Käyttöliittymän ulkoasu on vain osittain valmis
 
