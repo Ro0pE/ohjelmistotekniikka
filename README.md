@@ -16,6 +16,13 @@
 
 Komennot suoritetaan projektin juuressa (sis. pom, target, src..)
 
+### Ohjelman käynnistys
+
+Komento:
+```
+mvn compile exec:java -Dexec.mainClass=game.main.Main
+```
+
 ### Testaus
 
 Komento:
